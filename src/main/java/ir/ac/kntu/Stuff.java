@@ -3,6 +3,7 @@ package ir.ac.kntu;
 import ir.ac.kntu.Manager.ScannerWrapper;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Objects;
 
 public class Stuff {
@@ -49,14 +50,19 @@ public class Stuff {
     }
 
     public void addIdea() {
-        System.out.println("please enter the idea about the food");
+        System.out.println("please enter the idea about the Stuff");
         String idea = ScannerWrapper.getInstance().nextLine();
         comments.add(idea);
-        System.out.println("please enter the score for the food");
-        double star = ScannerWrapper.getInstance().nextDouble();
+        System.out.println("please enter the score for the Stuff");
+        double star = 4;
+        try {
+            star = ScannerWrapper.getInstance().nextDouble();
+            star = starSetterToRight(star);
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Default will be add");
+        }
         ScannerWrapper.getInstance().nextLine();
-        star = starSetterToRight(star);
-        this.star = (star + this.star) /2;
+        this.star = ((this.star + star)/2);
     }
 
     @Override

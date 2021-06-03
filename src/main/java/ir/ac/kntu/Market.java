@@ -18,11 +18,8 @@ public class Market {
 
     private ArrayList<Stuff> stuffs;
 
-    private ArrayList <String> comments;
-
     public Market(String name, Address address, Time beggingTime, Time endingTime, double star,
                   ArrayList<Stuff> stuffs) {
-        comments = new ArrayList<>();
         this.name = name;
         this.address = address;
         this.beggingTime = beggingTime;
@@ -31,8 +28,36 @@ public class Market {
         this.stuffs = stuffs;
     }
 
-    public ArrayList<String> getComments() {
-        return new ArrayList<>(comments);
+    public double getStar() {
+        return star;
+    }
+
+    public ArrayList<Stuff> getStuffs() {
+        return stuffs;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setBeggingTime(Time beggingTime) {
+        this.beggingTime = beggingTime;
+    }
+
+    public void setEndingTime(Time endingTime) {
+        this.endingTime = endingTime;
+    }
+
+    public void setStar(double star) {
+        this.star = star;
+    }
+
+    public void setStuffs(ArrayList<Stuff> stuffs) {
+        this.stuffs = stuffs;
     }
 
     private double starSetterToRight(double star) {
@@ -56,12 +81,12 @@ public class Market {
     @Override
     public String toString() {
         return "Market {" +
-                "name='" + name + '\'' +
-                ", address=" + address +
-                ", beggingTime=" + beggingTime +
-                ", endingTime=" + endingTime +
-                ", star=" + star +
-                ",\nstuffs=" + stuffs +
+                "name = " + name + '\'' +
+                ", address = " + address +
+                ", beggingTime = " + beggingTime +
+                ", endingTime = " + endingTime +
+                "\nstar = " + star +
+                ",stuffs=" + stuffs +
                 '}';
     }
 }
