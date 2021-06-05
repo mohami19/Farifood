@@ -85,8 +85,8 @@ public class Market {
                 ", address = " + address +
                 ", beggingTime = " + beggingTime +
                 ", endingTime = " + endingTime +
-                "\nstar = " + star +
-                ",stuffs=" + stuffs +
+                ", star = " + star +
+                "\nstuffs=" + stuffs +
                 '}';
     }
 }

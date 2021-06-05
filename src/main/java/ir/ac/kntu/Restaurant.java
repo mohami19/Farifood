@@ -4,7 +4,6 @@ import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -29,7 +28,7 @@ public class Restaurant extends Market{
         this.priceType = priceType;
     }
 
-    public void addIdea(){
+    public void addComment(){
         System.out.println("please enter the idea about the Restaurant");
         String comment = ScannerWrapper.getInstance().nextLine();
         comments.add(comment);
@@ -37,11 +36,11 @@ public class Restaurant extends Market{
         double star = 5;
         try {
             star = ScannerWrapper.getInstance().nextDouble();
+            ScannerWrapper.getInstance().nextLine();
             star = starSetterToRight(star);
         } catch (InputMismatchException e) {
             System.out.println("You Entered the Wrong Input and Default will be add -- > Star = 5");
         }
-        ScannerWrapper.getInstance().nextLine();
         setStar((getStar()+ star)/2);
     }
 
@@ -57,6 +56,6 @@ public class Restaurant extends Market{
         return "Restaurant { " + super.toString() +
                 ", priceType = " + priceType +
                 ", commentsNum = " + comments.size() +
-                "}";
+                " }";
     }
 }
