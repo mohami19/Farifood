@@ -8,6 +8,7 @@ import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 
 public class Restaurant extends Market{
 
@@ -36,7 +37,7 @@ public class Restaurant extends Market{
         String comment = ScannerWrapper.getInstance().nextLine();
         comments.add(comment);
         System.out.println("please enter the score for the Restaurant");
-        double star = 5;
+        double star = new Random().nextDouble() % 5;
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             ScannerWrapper.getInstance().nextLine();

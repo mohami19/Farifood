@@ -5,6 +5,7 @@ import ir.ac.kntu.Manager.Time;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Random;
 
 public class Food extends Stuff{
     private Time backingTime;
@@ -28,7 +29,7 @@ public class Food extends Stuff{
         String idea = ScannerWrapper.getInstance().nextLine();
         comments.add(idea);
         System.out.println("please enter the score for the Food");
-        double star = 4;
+        double star = new Random().nextDouble() % 5;
         try {
             star = ScannerWrapper.getInstance().nextDouble();
         } catch (InputMismatchException e) {
