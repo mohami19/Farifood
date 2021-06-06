@@ -29,7 +29,7 @@ public class Item extends Stuff {
             ScannerWrapper.getInstance().nextLine();
             star = starSetterToRight(star);
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Random will be add" + e);
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
             System.out.println("Score is : " + star);
         }
         ScannerWrapper.getInstance().nextLine();

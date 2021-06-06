@@ -46,7 +46,7 @@ public class FruitShop extends Market{
             choice = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add" + e);
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
         }
         return choice - 1;
     }
