@@ -6,7 +6,7 @@ import java.util.InputMismatchException;
 import java.util.Objects;
 import java.util.Random;
 
-public class Stuff {
+public abstract class Stuff {
     private String name;
 
     private double price;
@@ -53,21 +53,7 @@ public class Stuff {
         return star%5;
     }
 
-    public void addComments() {
-        System.out.println("please enter the idea about the Stuff");
-        String idea = ScannerWrapper.getInstance().nextLine();
-        comments.add(idea);
-        System.out.println("please enter the score for the Stuff");
-        double star = new Random().nextDouble() % 5;
-        try {
-            star = ScannerWrapper.getInstance().nextDouble();
-            star = starSetterToRight(star);
-        } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add");
-        }
-        ScannerWrapper.getInstance().nextLine();
-        this.star = ((this.star + star)/2);
-    }
+    abstract void addComments();
 
     @Override
     public String toString() {
