@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.Market;
 
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.PriceType;
@@ -37,29 +37,23 @@ public class Restaurant extends Market{
         String comment = ScannerWrapper.getInstance().nextLine();
         comments.add(comment);
         System.out.println("please enter the score for the Restaurant");
-        double star = new Random().nextDouble() % 5;
+        double star = new Random().nextInt(6);
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             ScannerWrapper.getInstance().nextLine();
             star = starSetterToRight(star);
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add -- > Star = 5");
+            System.out.println("You Entered the Wrong Input and Random will be add" + e);
+            System.out.println("Score is : " + star);
         }
         setStar((getStar()+ star)/2);
     }
 
-    private double starSetterToRight(double star) {
-        if (star%5 == 0) {
-            return 5;
-        }
-        return star%5;
-    }
-
     @Override
     public String toString() {
-        return "Restaurant { " + super.toString() +
-                ", priceType = " + priceType +
-                ", commentsNum = " + comments.size() +
-                " }";
+        return  super.toString() +
+                "priceType = " + priceType +
+                ", comments = " + comments +
+                '}';
     }
 }

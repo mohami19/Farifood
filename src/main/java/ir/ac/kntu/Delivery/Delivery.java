@@ -3,12 +3,11 @@ package ir.ac.kntu.Delivery;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Restaurant;
+import ir.ac.kntu.Market.Restaurant;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Delivery {
     private DeliveryType deliveryType;

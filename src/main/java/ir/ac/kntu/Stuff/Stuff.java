@@ -46,7 +46,7 @@ public abstract class Stuff {
         return new ArrayList<>(comments);
     }
 
-    private double starSetterToRight(double star) {
+    protected double starSetterToRight(double star) {
         if (star%5 == 0) {
             return 5;
         }
@@ -58,7 +58,7 @@ public abstract class Stuff {
     @Override
     public String toString() {
         return "name = '" + name + '\'' + ", price ='" + price + '\'' +
-                ", stars = " + star + ", Comments Number : " + comments.size() + "\n";
+                ", stars = " + star + ", Comments Number : " + comments.size() + " ";
     }
 
     @Override

@@ -1,14 +1,12 @@
-package ir.ac.kntu;
+package ir.ac.kntu.Market;
 
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Stuff.Item;
 import ir.ac.kntu.Stuff.Stuff;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
-import java.util.Scanner;
 
 public class SuperMarket extends Market{
     private final ArrayList<String> comments;
@@ -25,22 +23,16 @@ public class SuperMarket extends Market{
         String comment = ScannerWrapper.getInstance().nextLine();
         comments.add(comment);
         System.out.println("please enter the score for the SuperMarket");
-        double star = new Random().nextDouble() % 5;
+        double star = new Random().nextInt(6);
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             ScannerWrapper.getInstance().nextLine();
             star = starSetterToRight(star);
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add -- > Star = Random" + e);
+            System.out.println("You Entered the Wrong Input and Random will be add" + e);
+            System.out.println("Score is : " + star);
         }
         setStar((getStar()+ star)/2);
-    }
-
-    private double starSetterToRight(double star) {
-        if (star%5 == 0) {
-            return 5;
-        }
-        return star%5;
     }
 
     public int workingTimeParts(Time start, Time end){
@@ -58,10 +50,17 @@ public class SuperMarket extends Market{
         int choice = new Random().nextInt(times.size());
         try {
             choice = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add" + e);
+            System.out.println("You Entered the Wrong Input and Random will be add" + e);
         }
         return choice - 1;
     }
 
+    @Override
+    public String toString() {
+        return  super.toString() +
+                " comments = " + comments.size() +
+                '}';
+    }
 }

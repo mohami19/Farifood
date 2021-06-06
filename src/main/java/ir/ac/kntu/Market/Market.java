@@ -1,4 +1,4 @@
-package ir.ac.kntu;
+package ir.ac.kntu.Market;
 
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.Time;
@@ -63,7 +63,7 @@ public abstract class Market {
 
     abstract void addComment();
 
-    private double starSetterToRight(double star) {
+    protected double starSetterToRight(double star) {
         if (star%5 == 0) {
             return 5;
         }
@@ -83,7 +83,8 @@ public abstract class Market {
 
     @Override
     public String toString() {
-        return "Market {" +
+        return getClass().getSimpleName() +
+                " {" +
                 "name = " + name + '\'' +
                 ", address = " + address +
                 ", beggingTime = " + beggingTime +

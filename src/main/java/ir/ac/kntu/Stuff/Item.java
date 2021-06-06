@@ -19,15 +19,18 @@ public class Item extends Stuff {
 
     @Override
     public void addComments() {
-        System.out.println("please enter the idea about the Food");
+        System.out.println("please enter the idea about the Item");
         String idea = ScannerWrapper.getInstance().nextLine();
         comments.add(idea);
-        System.out.println("please enter the score for the Food");
-        double star = new Random().nextDouble() % 5;
+        System.out.println("please enter the score for the Item");
+        double star = new Random().nextInt(6);
         try {
             star = ScannerWrapper.getInstance().nextDouble();
+            ScannerWrapper.getInstance().nextLine();
+            star = starSetterToRight(star);
         } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Default will be add");
+            System.out.println("You Entered the Wrong Input and Random will be add" + e);
+            System.out.println("Score is : " + star);
         }
         ScannerWrapper.getInstance().nextLine();
         setStar((star+getStar())/2);
@@ -35,8 +38,8 @@ public class Item extends Stuff {
 
     @Override
     public String toString() {
-        return "Fruit { " +
+        return "Item { " + super.toString()+
                 "numbers of fruit = " + numbers +
-               " }";
+               " }\n";
     }
 }
