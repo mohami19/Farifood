@@ -1,10 +1,10 @@
-package ir.ac.kntu;
+package ir.ac.kntu.Stuff;
 
 import ir.ac.kntu.Manager.ScannerWrapper;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Stuff {
     private String name;
@@ -13,7 +13,7 @@ public class Stuff {
 
     private double star;
 
-    private ArrayList<String> comments;
+    private final ArrayList<String> comments;
 
     public Stuff(String name, double price, double star) {
         comments = new ArrayList<>();
@@ -38,6 +38,10 @@ public class Stuff {
         return star;
     }
 
+    public void setStar(double star) {
+        this.star = star;
+    }
+
     public ArrayList<String> getComments() {
         return new ArrayList<>(comments);
     }
@@ -49,12 +53,12 @@ public class Stuff {
         return star%5;
     }
 
-    public void addIdea() {
+    public void addComments() {
         System.out.println("please enter the idea about the Stuff");
         String idea = ScannerWrapper.getInstance().nextLine();
         comments.add(idea);
         System.out.println("please enter the score for the Stuff");
-        double star = 4;
+        double star = new Random().nextDouble() % 5;
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             star = starSetterToRight(star);
@@ -67,9 +71,8 @@ public class Stuff {
 
     @Override
     public String toString() {
-        return "Food { " +
-                "name= '" + name + '\'' + ", price ='" + price + '\'' +
-                ", stars = " + star + ", Comments Number : " + comments.size() +" }\n";
+        return "name = '" + name + '\'' + ", price ='" + price + '\'' +
+                ", stars = " + star + ", Comments Number : " + comments.size() + "\n";
     }
 
     @Override

@@ -2,10 +2,11 @@ package ir.ac.kntu;
 
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
 
-public class Market {
+public abstract class Market {
     private String name;
 
     private Address address;
@@ -59,6 +60,8 @@ public class Market {
     public void setStuffs(ArrayList<Stuff> stuffs) {
         this.stuffs = stuffs;
     }
+
+    abstract void addComment();
 
     private double starSetterToRight(double star) {
         if (star%5 == 0) {

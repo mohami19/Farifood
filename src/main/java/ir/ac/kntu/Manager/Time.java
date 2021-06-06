@@ -37,7 +37,7 @@ public class Time {
 
     @Override
     public String toString() {
-        return "The Time is : " + hour + " : " + minute;
+        return "The Time is --> " + hour + " : " + minute;
     }
 
     @Override

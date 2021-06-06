@@ -4,6 +4,8 @@ import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.Stuff.Stuff;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
@@ -11,7 +13,7 @@ public class Restaurant extends Market{
 
     private PriceType priceType;
 
-    private ArrayList<String> comments;
+    private final ArrayList<String> comments;
 
     public Restaurant(String name, Address address, Time beggingTime, Time endingTime,
                       double star, ArrayList<Stuff> stuffs, PriceType priceType) {
@@ -28,7 +30,8 @@ public class Restaurant extends Market{
         this.priceType = priceType;
     }
 
-    public void addComment(){
+    @Override
+    public void addComment() {
         System.out.println("please enter the idea about the Restaurant");
         String comment = ScannerWrapper.getInstance().nextLine();
         comments.add(comment);
