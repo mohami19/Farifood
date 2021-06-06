@@ -1,9 +1,9 @@
 package ir.ac.kntu;
 
 import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Stuff.Food;
+import ir.ac.kntu.Stuff.Item;
 import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
@@ -14,9 +14,9 @@ public class Main {
         Time time1 = new Time(12,30);
         Time time2 = new Time(22,30);
         ArrayList<Stuff> stuffs = new ArrayList<>();
-        Stuff stuff1 = new Stuff("Pitza",15,5);
-        Stuff stuff2 = new Stuff("Ali",15,5);
-        Stuff stuff3 = new Stuff("pizza",15,5);
+        Stuff stuff1 = new Food("Pitza",15,5,time2);
+        Stuff stuff2 = new Food("Ali",15,5,time1);
+        Stuff stuff3 = new Item("pizza",15,5,10);
         Food food = new Food("kebab",15,5,time1);
         stuffs.add(stuff1);
         stuffs.add(stuff2);
