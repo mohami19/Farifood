@@ -9,18 +9,18 @@ public class Customer {
 
     private Address address;
 
-
-    private ArrayList<String> comments;
-
-    private ArrayList<Order> orders;
-
+    private final ArrayList<Order> orders;
 
     public Customer(String telephoneNumber, Address address) {
         this.telephoneNumber = telephoneNumber;
         this.address = address;
         orders= new ArrayList<>();
-        comments = new ArrayList<>();
     }
+
+    public void addOrder(Order order) {
+        orders.add(order);
+    }
+
     @Override
     public String toString() {
         return "Customer { " +

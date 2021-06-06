@@ -3,6 +3,7 @@ package ir.ac.kntu.Market;
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.Persons.FruitShopAdmin;
 import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
@@ -12,10 +13,20 @@ import java.util.Random;
 public class FruitShop extends Market{
     private final ArrayList<String> comments;
 
+    private FruitShopAdmin fruitShopAdmin;
+
     public FruitShop(String name, Address address, Time beggingTime,
                      Time endingTime, double star, ArrayList<Stuff> stuffs) {
         super(name, address, beggingTime, endingTime, star, stuffs);
         comments = new ArrayList<>();
+    }
+
+    public FruitShopAdmin getFruitShopAdmin() {
+        return fruitShopAdmin;
+    }
+
+    public void setFruitShopAdmin(FruitShopAdmin fruitShopAdmin) {
+        this.fruitShopAdmin = fruitShopAdmin;
     }
 
     public int workingTimeParts(Time start, Time end){

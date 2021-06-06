@@ -3,6 +3,7 @@ package ir.ac.kntu.Market;
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.Persons.SuperMarketAdmin;
 import ir.ac.kntu.Stuff.Stuff;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,10 +12,24 @@ import java.util.Random;
 public class SuperMarket extends Market{
     private final ArrayList<String> comments;
 
-    public SuperMarket(String name, Address address, Time beggingTime,
-                       Time endingTime, double star, ArrayList<Stuff> stuffs) {
+    private SuperMarketAdmin superMarketAdmin;
+
+    public SuperMarket(String name, Address address, Time beggingTime, Time endingTime,
+                       double star, ArrayList<Stuff> stuffs) {
         super(name, address, beggingTime, endingTime, star, stuffs);
         comments = new ArrayList<>();
+    }
+
+    public ArrayList<String> getComments() {
+        return new ArrayList<>(comments);
+    }
+
+    public SuperMarketAdmin getSuperMarketAdmin() {
+        return superMarketAdmin;
+    }
+
+    public void setSuperMarketAdmin(SuperMarketAdmin superMarketAdmin) {
+        this.superMarketAdmin = superMarketAdmin;
     }
 
     @Override

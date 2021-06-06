@@ -4,6 +4,7 @@ import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.Persons.RestaurantAdmin;
 import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
@@ -16,11 +17,21 @@ public class Restaurant extends Market{
 
     private final ArrayList<String> comments;
 
+    private RestaurantAdmin restaurantAdmin;
+
     public Restaurant(String name, Address address, Time beggingTime, Time endingTime,
                       double star, ArrayList<Stuff> stuffs, PriceType priceType) {
         super(name, address, beggingTime, endingTime, star, stuffs);
         this.priceType = priceType;
         comments = new ArrayList<>();
+    }
+
+    public RestaurantAdmin getRestaurantAdmin() {
+        return restaurantAdmin;
+    }
+
+    public void setRestaurantAdmin(RestaurantAdmin restaurantAdmin) {
+        this.restaurantAdmin = restaurantAdmin;
     }
 
     public ArrayList<String> getComments() {
