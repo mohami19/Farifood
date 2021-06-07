@@ -5,7 +5,6 @@ import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.persons.SuperMarketAdmin;
 import ir.ac.kntu.Stuff.Item;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -17,6 +16,9 @@ public class SuperMarket extends Market{
 
     private SuperMarketAdmin superMarketAdmin;
 
+    public SuperMarket() {
+    }
+
     public SuperMarket(String name, Address address, Time beggingTime, Time endingTime,
                        double star, ArrayList<Item> items) {
         super(name, address, beggingTime, endingTime, star);
@@ -27,12 +29,38 @@ public class SuperMarket extends Market{
         return new ArrayList<>(comments);
     }
 
-    public SuperMarketAdmin getSuperMarketAdmin() {
-        return superMarketAdmin;
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 
-    public void setSuperMarketAdmin(SuperMarketAdmin superMarketAdmin) {
-        this.superMarketAdmin = superMarketAdmin;
+    public SuperMarket addSuperMarket(){
+        System.out.println("please Enter the new SuperMarket");
+        System.out.println("Please Enter the name : ");
+        String name = ScannerWrapper.getInstance().nextLine();
+        Address address = new Address().addAddress();
+        System.out.println("Starting Time -->");
+        Time start = new Time().addTime();
+        System.out.println("Ending Time -->");
+        Time end = new Time().addTime();
+        ArrayList<Item> items = addItems();
+        SuperMarket superMarket = new SuperMarket(name,address,start,end,5,items);
+        System.out.println("the new  SuperMarket :  " + superMarket);
+        return superMarket;
+    }
+
+    public ArrayList<Item> addItems(){
+        ArrayList<Item> items = new ArrayList<>();
+        System.out.println("Adding Item  : ");
+        System.out.println("Do You Want To Add Food If so Enter Yes and If you don't want to add press Enter");
+        String input = ScannerWrapper.getInstance().nextLine().trim();
+        while(input.matches("[Yy]es|[Yy]")){
+            Item item = new Item().addItem();
+            System.out.println("The Item you have saved : " + item);
+            items.add(item);
+            System.out.println("Do You Want To Add More If so Enter Yes and If you don't want to add press Enter");
+            input = ScannerWrapper.getInstance().nextLine().trim();
+        }
+        return items;
     }
 
     @Override

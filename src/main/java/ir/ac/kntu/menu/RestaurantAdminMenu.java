@@ -7,7 +7,6 @@ import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.Stuff.Food;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
