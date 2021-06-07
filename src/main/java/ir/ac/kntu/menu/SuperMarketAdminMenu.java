@@ -4,6 +4,7 @@ import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.SuperMarket;
+import ir.ac.kntu.persons.SuperMarketAdmin;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -19,13 +20,10 @@ public class SuperMarketAdminMenu {
     private void menu(ArrayList<SuperMarket> superMarkets) {
         printMenu();
         System.out.println("please chose the thing you want to do");
-        switch (selector(3)){
+        switch (selector(2)){
             case 1:
-                addSuperMarket(new SuperMarket().addSuperMarket(),superMarkets);
-                break;
-            case 2:
                 modifySuperMarket(superMarkets);
-            case 3:
+            case 2:
                 seeTheCommentsOfOneSuperMarket(superMarkets);
                 break;
             default:
@@ -39,11 +37,17 @@ public class SuperMarketAdminMenu {
         int choice = selector(superMarkets.size());
         System.out.println(superMarkets.get(choice).getComments());
     }
+
     private void modifySuperMarket(ArrayList<SuperMarket> superMarkets) {
         printSuperMarkets(superMarkets);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         String variable = ScannerWrapper.getInstance().nextLine();
         int choice = Integer.parseInt(variable);
+        SuperMarketAdmin superMarketAdmin = addSuperMarketAdmin(superMarkets.get(choice-1));
+        if (!superMarkets.get(choice-1).getSuperMarketAdmin().checkSuperMarketAdmin(superMarketAdmin)) {
+            System.out.println("Wrong Admin");
+            return;
+        }
         System.out.println("Do You Want To Modify If so Enter Yes" +
                 " and If you don't want to add press Enter");
         String input = ScannerWrapper.getInstance().nextLine().trim();
@@ -86,11 +90,20 @@ public class SuperMarketAdminMenu {
         }
     }
 
+    private SuperMarketAdmin addSuperMarketAdmin(SuperMarket superMarket){
+        System.out.println("please Enter the name of the owner for log in");
+        String name = ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the password of the owner for log in");
+        String password = ScannerWrapper.getInstance().nextLine();
+        return new SuperMarketAdmin(name,password,superMarket);
+    }
+
     private void printSuperMarkets(ArrayList<SuperMarket> superMarkets) {
         for (int i = 0; i < superMarkets.size(); i++) {
             System.out.println(i+1 + " : " + superMarkets.get(i));
         }
     }
+
     private void printSuperMarketModifyMenu(){
         System.out.println("1 : Name");
         System.out.println("2 : address");
@@ -111,14 +124,14 @@ public class SuperMarketAdminMenu {
         return score;
     }
 
-    private void addSuperMarket(SuperMarket superMarket ,ArrayList<SuperMarket> superMarkets) {
+    /*private void addSuperMarket(SuperMarket superMarket,ArrayList<SuperMarket> superMarkets) {
         superMarkets.add(superMarket);
-    }
+    }*/
 
     private void printMenu(){
         Menu[] menu = Menu.values();
-        for (int i = 0; i < menu.length; i++) {
-            System.out.println(menu[i]);
+        for (Menu value : menu) {
+            System.out.println(value);
         }
     }
 

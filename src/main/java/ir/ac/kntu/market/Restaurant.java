@@ -48,6 +48,14 @@ public class Restaurant extends Market{
         this.priceType = priceType;
     }
 
+    public RestaurantAdmin getRestaurantAdmin() {
+        return restaurantAdmin;
+    }
+
+    public void setRestaurantAdmin(RestaurantAdmin restaurantAdmin) {
+        this.restaurantAdmin = restaurantAdmin;
+    }
+
     public Restaurant addRestaurant(){
         System.out.println("please Enter the new Restaurant");
         System.out.println("Please Enter the name : ");

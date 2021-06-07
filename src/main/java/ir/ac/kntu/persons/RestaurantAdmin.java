@@ -13,16 +13,25 @@ public class RestaurantAdmin extends Admin {
         this.restaurant = restaurant;
     }
 
-    public boolean checkRestaurantAdminInformation(String userName, String password) {
-        if (!getName().equals(userName)) {
-            System.out.println("Wrong Username");
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
+    }
+
+    public boolean checkRestaurantAdmin(RestaurantAdmin restaurantAdmin){
+        if (!this.getName().equals(restaurantAdmin.getName())){
+            System.out.println("The Wrong name was used");
+            return false;
+        } else if (!this.getPassword().equals(restaurantAdmin.getPassword())) {
+            System.out.println("Wrong password");
+            return false;
+        } else if (!this.restaurant.equals(restaurantAdmin.getRestaurant())) {
+            System.out.println("this Admin doesn't own this Super Market");
             return false;
         }
-        if (!this.getPassword().equals(password)) {
-            System.out.println("Wrong Password");
-            return false;
-        }
-        System.out.println("Login was successful");
         return true;
     }
 

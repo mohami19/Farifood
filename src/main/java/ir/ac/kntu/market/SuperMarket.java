@@ -25,6 +25,14 @@ public class SuperMarket extends Market{
         this.items = items;
     }
 
+    public void setSuperMarketAdmin(SuperMarketAdmin superMarketAdmin) {
+        this.superMarketAdmin = superMarketAdmin;
+    }
+
+    public SuperMarketAdmin getSuperMarketAdmin() {
+        return superMarketAdmin;
+    }
+
     public ArrayList<String> getComments() {
         return new ArrayList<>(comments);
     }

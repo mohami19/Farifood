@@ -12,16 +12,21 @@ public class SuperMarketAdmin extends Admin {
         this.superMarket = superMarket;
     }
 
-    public boolean checkSuperMarketAdminInformation(String userName, String password) {
-        if (!getName().equals(userName)) {
-            System.out.println("Wrong Username");
+    public SuperMarket getSuperMarket() {
+        return superMarket;
+    }
+
+    public boolean checkSuperMarketAdmin(SuperMarketAdmin superMarketAdmin){
+        if (!this.getName().equals(superMarketAdmin.getName())){
+            System.out.println("The Wrong name was used");
+            return false;
+        } else if (!this.getPassword().equals(superMarketAdmin.getPassword())) {
+            System.out.println("Wrong password");
+            return false;
+        } else if (!this.superMarket.equals(superMarketAdmin.getSuperMarket())) {
+            System.out.println("this Admin doesn't own this Super Market");
             return false;
         }
-        if (!this.getPassword().equals(password)) {
-            System.out.println("Wrong Password");
-            return false;
-        }
-        System.out.println("Login was successful");
         return true;
     }
 

@@ -7,6 +7,10 @@ import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.Stuff.Food;
+import ir.ac.kntu.market.SuperMarket;
+import ir.ac.kntu.persons.RestaurantAdmin;
+import ir.ac.kntu.persons.SuperMarketAdmin;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -25,15 +29,12 @@ public class RestaurantAdminMenu {
         while (true) {
             printRestaurantAdminMenu();
             System.out.println("please chose the thing you want to do");
-            switch (selector(4)) {
+            switch (selector(3)) {
                 case 1:
                     sorting(restaurants);
                     showSavedRestaurant(restaurants);
                     break;
-                case 2 :
-                    addRestaurant(new Restaurant().addRestaurant(), restaurants);
-                    break;
-                case 3:
+                case 2:
                     modifyRestaurant(restaurants);
                     break;
                 default:
@@ -51,15 +52,20 @@ public class RestaurantAdminMenu {
         }
     }
 
-    private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {
+    /*private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {
         restaurants.add(restaurant);
-    }
+    }*/
 
     private void modifyRestaurant(ArrayList<Restaurant> restaurants){
         printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         String variable = ScannerWrapper.getInstance().nextLine();
         int choice = Integer.parseInt(variable);
+        RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurants.get(choice-1));
+        if (!restaurants.get(choice-1).getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
+            System.out.println("Wrong Admin");
+            return;
+        }
         System.out.println("Do You Want To Modify If so Enter Yes" +
                 " and If you don't want to add press Enter");
         String input = ScannerWrapper.getInstance().nextLine().trim();
@@ -105,6 +111,13 @@ public class RestaurantAdminMenu {
         }
     }
 
+    private RestaurantAdmin addRestaurantAdmin(Restaurant restaurant){
+        System.out.println("please Enter the name of the owner for log in");
+        String name = ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the password of the owner for log in");
+        String password = ScannerWrapper.getInstance().nextLine();
+        return new RestaurantAdmin(name,password,restaurant);
+    }
 
     private PriceType addPriceType() {
         System.out.println("please Enter the priceType you want");

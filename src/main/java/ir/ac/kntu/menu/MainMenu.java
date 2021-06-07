@@ -10,6 +10,8 @@ import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.market.SuperMarket;
+import ir.ac.kntu.persons.RestaurantAdmin;
+import ir.ac.kntu.persons.SuperMarketAdmin;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -71,12 +73,16 @@ public class MainMenu {
         ArrayList<Item>[] items = primaryItems();
         SuperMarket superMarket1 = new SuperMarket("DayToDay",new Address("Wild 2","13"),
                 new Time(10,0),new Time(23,0),5,items[0]);
+        superMarket1.setSuperMarketAdmin(new SuperMarketAdmin("Ali","123",superMarket1));
         SuperMarket superMarket2 = new SuperMarket("Saida",new Address("Asgard","13"),
                 new Time(10,0),new Time(23,0),5,items[1]);
+        superMarket2.setSuperMarketAdmin(new SuperMarketAdmin("Hossein","1234",superMarket2));
         SuperMarket superMarket3 = new SuperMarket("Ham Hame",new Address("Salehi","17"),
                 new Time(10,0),new Time(23,0),5,items[2]);
+        superMarket3.setSuperMarketAdmin(new SuperMarketAdmin("Hassan","1234",superMarket3));
         SuperMarket superMarket4 = new SuperMarket("Aref",new Address("Tehran","19"),
                 new Time(10,0),new Time(23,0),5,items[3]);
+        superMarket4.setSuperMarketAdmin(new SuperMarketAdmin("Mahdi","1234",superMarket4));
         superMarkets.add(superMarket1);
         superMarkets.add(superMarket2);
         superMarkets.add(superMarket3);
@@ -107,12 +113,16 @@ public class MainMenu {
         ArrayList<Food>[] foods = primaryFood();
         Restaurant restaurant1 = new Restaurant("DumpEater", new Address("Harvest","92"),
                 new Time(8,0),new Time(22,0), 5,foods[0], PriceType.NORMAL );
+        restaurant1.setRestaurantAdmin(new RestaurantAdmin("Ali","12",restaurant1));
         Restaurant restaurant2 = new Restaurant("Dine Dime", new Address("Wild ","13"),
                 new Time(10,0),new Time(23,0), 5,foods[1],PriceType.NORMAL);
+        restaurant2.setRestaurantAdmin(new RestaurantAdmin("Hossein","12",restaurant2));
         Restaurant restaurant3 = new Restaurant("Dine Fine", new Address("Harvest","11"),
                 new Time(1,0),new Time(16,0), 5,foods[2],PriceType.ECONOMIC);
+        restaurant3.setRestaurantAdmin(new RestaurantAdmin("Mahdi","12",restaurant3));
         Restaurant restaurant4 = new Restaurant("Excellent Experience", new Address("Brook","10"),
                 new Time(8,0), new Time(23,0),5,foods[3],PriceType.LUXURY);
+        restaurant4.setRestaurantAdmin(new RestaurantAdmin("Hassan","12",restaurant4));
         restaurants.add(restaurant1);
         restaurants.add(restaurant2);
         restaurants.add(restaurant3);
