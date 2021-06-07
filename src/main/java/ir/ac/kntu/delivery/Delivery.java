@@ -1,9 +1,9 @@
-package ir.ac.kntu.Delivery;
+package ir.ac.kntu.delivery;
 
-import ir.ac.kntu.Manager.ScannerWrapper;
+import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.Stuff.Food;
-import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Market.Restaurant;
+import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.market.Restaurant;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

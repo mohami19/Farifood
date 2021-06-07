@@ -1,18 +1,19 @@
-package ir.ac.kntu.Market;
+package ir.ac.kntu.market;
 
-import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Persons.SuperMarketAdmin;
+import ir.ac.kntu.manager.Address;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.persons.SuperMarketAdmin;
 import ir.ac.kntu.Stuff.Item;
-import ir.ac.kntu.Stuff.Stuff;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
 public class SuperMarket extends Market{
-    private ArrayList<Item> items;
     private final ArrayList<String> comments = new ArrayList<>();
+
+    private ArrayList<Item> items;
 
     private SuperMarketAdmin superMarketAdmin;
 
@@ -77,7 +78,7 @@ public class SuperMarket extends Market{
     @Override
     public String toString() {
         return  super.toString() +
-                " comments = " + comments.size() +
+                " Number of comments = " + comments.size() +
                 '}';
     }
 }

@@ -1,6 +1,6 @@
-package ir.ac.kntu.Customer;
+package ir.ac.kntu.customer;
 
-import ir.ac.kntu.Manager.Address;
+import ir.ac.kntu.manager.Address;
 import java.util.ArrayList;
 import java.util.Objects;
 

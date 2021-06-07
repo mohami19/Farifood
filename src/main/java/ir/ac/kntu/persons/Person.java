@@ -1,4 +1,4 @@
-package ir.ac.kntu.Persons;
+package ir.ac.kntu.persons;
 
 import java.util.Objects;
 

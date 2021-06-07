@@ -1,4 +1,4 @@
-package ir.ac.kntu.Delivery;
+package ir.ac.kntu.delivery;
 
 public enum DeliveryMenu {
     SHOW_SAVED_DELIVERY,MAKE_NEW_DELIVERY,CHANGE_ONE_DELIVERY_INFORMATION,SEE_THE_RESTAURANTS,

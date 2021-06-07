@@ -1,7 +1,7 @@
 package ir.ac.kntu.Stuff;
 
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.manager.Time;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;

@@ -1,10 +1,7 @@
 package ir.ac.kntu.Stuff;
 
-import ir.ac.kntu.Manager.ScannerWrapper;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Objects;
-import java.util.Random;
 
 public abstract class Stuff {
     private String name;

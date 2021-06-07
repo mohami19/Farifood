@@ -1,6 +1,6 @@
 package ir.ac.kntu.Stuff;
 
-import ir.ac.kntu.Manager.ScannerWrapper;
+import ir.ac.kntu.manager.ScannerWrapper;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

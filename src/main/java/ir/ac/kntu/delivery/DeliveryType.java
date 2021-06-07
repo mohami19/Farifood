@@ -1,4 +1,4 @@
-package ir.ac.kntu.Delivery;
+package ir.ac.kntu.delivery;
 
 public enum DeliveryType {
     CAR,MOTOR

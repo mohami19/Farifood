@@ -1,19 +1,18 @@
-package ir.ac.kntu.Persons;
+package ir.ac.kntu.persons;
 
-import ir.ac.kntu.Market.Restaurant;
+import ir.ac.kntu.market.FruitShop;
 
 import java.util.Objects;
 
-public class RestaurantAdmin extends Admin {
+public class FruitShopAdmin extends Admin{
+    private FruitShop fruitShop;
 
-    private Restaurant restaurant;
-
-    public RestaurantAdmin(String name, String password, Restaurant restaurant) {
+    public FruitShopAdmin(String name, String password, FruitShop fruitShop) {
         super(name, password);
-        this.restaurant = restaurant;
+        this.fruitShop = fruitShop;
     }
 
-    public boolean checkRestaurantAdminInformation(String userName, String password) {
+    public boolean checkFruitShopAdminInformation(String userName, String password) {
         if (!getName().equals(userName)) {
             System.out.println("Wrong Username");
             return false;
@@ -37,12 +36,12 @@ public class RestaurantAdmin extends Admin {
         if (!super.equals(o)) {
             return false;
         }
-        RestaurantAdmin that = (RestaurantAdmin) o;
-        return Objects.equals(restaurant, that.restaurant);
+        FruitShopAdmin that = (FruitShopAdmin) o;
+        return Objects.equals(fruitShop, that.fruitShop);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), restaurant);
+        return Objects.hash(super.hashCode(), fruitShop);
     }
 }

@@ -1,9 +1,9 @@
-package ir.ac.kntu.Market;
+package ir.ac.kntu.market;
 
-import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Persons.FruitShopAdmin;
+import ir.ac.kntu.manager.Address;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.persons.FruitShopAdmin;
 import ir.ac.kntu.Stuff.Fruit;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -109,7 +109,7 @@ public class FruitShop extends Market{
     @Override
     public String toString() {
         return super.toString() +
-                "comments = " + comments.size()+
+                " Number of comments = " + comments.size()+
                 " Fruits = " +
                 " }";
     }

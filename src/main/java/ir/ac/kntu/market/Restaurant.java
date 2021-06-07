@@ -1,13 +1,11 @@
-package ir.ac.kntu.Market;
+package ir.ac.kntu.market;
 
-import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.PriceType;
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Persons.RestaurantAdmin;
+import ir.ac.kntu.manager.Address;
+import ir.ac.kntu.manager.PriceType;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.persons.RestaurantAdmin;
 import ir.ac.kntu.Stuff.Food;
-import ir.ac.kntu.Stuff.Fruit;
-import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -35,7 +33,7 @@ public class Restaurant extends Market{
 
 
     public ArrayList<Food> getFoods() {
-        return new ArrayList<>(foods);
+        return (foods);
     }
 
     public void setFoods(ArrayList<Food> foods) {
@@ -61,7 +59,9 @@ public class Restaurant extends Market{
         Time end = new Time().addTime();
         ArrayList<Food> foods = addFoods();
         PriceType priceType = addPriceType();
-        return new Restaurant(name,address,start,end,5,foods,priceType);
+        Restaurant restaurant = new Restaurant(name,address,start,end,5,foods,priceType);
+        System.out.println("the new  Restaurant :  " + restaurant);
+        return restaurant;
     }
 
     public ArrayList<Food> addFoods(){
@@ -86,7 +86,6 @@ public class Restaurant extends Market{
             System.out.println(i + 1 + " : " + priceTypes[i]);
         }
         int choice = new Random().nextInt(3);
-        ScannerWrapper.getInstance().nextLine();
         try {
             choice = ScannerWrapper.getInstance().nextInt()-1;
             ScannerWrapper.getInstance().nextLine();
@@ -119,7 +118,7 @@ public class Restaurant extends Market{
     public String toString() {
         return  super.toString() +
                 "priceType = " + priceType +
-                ", comments = " + comments +
+                ", Number of comments = " + comments.size() +
                 '}';
     }
 }

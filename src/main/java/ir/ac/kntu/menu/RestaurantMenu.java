@@ -1,4 +1,4 @@
-package ir.ac.kntu.Menu;
+package ir.ac.kntu.menu;
 
 public enum RestaurantMenu {
     SHOW_SAVED_RESTAURANT,MAKE_NEW_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,

@@ -1,8 +1,8 @@
-package ir.ac.kntu.Menu;
+package ir.ac.kntu.menu;
 
-import ir.ac.kntu.Delivery.Delivery;
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Market.Restaurant;
+import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.market.Restaurant;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -18,7 +18,7 @@ public class MarketAdminMenu {
         System.out.println("pleas Enter the part you want to Enter");
         Option[] option = MarketAdminMenu.Option.values();
         for (int i = 0; i < option.length; i++) {
-            System.out.println(option[i]);
+            System.out.println((i+1)+ " : "+ option[i]);
         }
         int choice = 1 + new Random().nextInt(5);
         try {

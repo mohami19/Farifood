@@ -1,4 +1,4 @@
-package ir.ac.kntu.Customer;
+package ir.ac.kntu.customer;
 
 import ir.ac.kntu.Stuff.Stuff;
 

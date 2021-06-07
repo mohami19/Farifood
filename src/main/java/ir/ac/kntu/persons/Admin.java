@@ -1,6 +1,6 @@
-package ir.ac.kntu.Persons;
+package ir.ac.kntu.persons;
 
-import ir.ac.kntu.Manager.ScannerWrapper;
+import ir.ac.kntu.manager.ScannerWrapper;
 
 import java.util.Objects;
 

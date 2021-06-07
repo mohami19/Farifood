@@ -1,11 +1,11 @@
-package ir.ac.kntu.Menu;
+package ir.ac.kntu.menu;
 
-import ir.ac.kntu.Delivery.Delivery;
-import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.PriceType;
-import ir.ac.kntu.Manager.ScannerWrapper;
-import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Market.Restaurant;
+import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.manager.Address;
+import ir.ac.kntu.manager.PriceType;
+import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.Stuff.Food;
 
 import java.util.ArrayList;
@@ -19,7 +19,6 @@ public class RestaurantAdminMenu {
     }
 
     public void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
-        System.out.println("Its in here");
         while (true) {
             printRestaurantAdminMenu();
             int choice = selector();
@@ -103,6 +102,7 @@ public class RestaurantAdminMenu {
         }
     }
 
+
     private PriceType addPriceType() {
         System.out.println("please Enter the priceType you want");
         PriceType[] priceTypes= PriceType.values();
@@ -122,7 +122,7 @@ public class RestaurantAdminMenu {
 
     private void printRestaurants(ArrayList<Restaurant> restaurants){
         for (int i = 0; i < restaurants.size(); i++) {
-            System.out.println(restaurants.get(i));
+            System.out.println(i+1 + " : " +restaurants.get(i));
         }
     }
 
@@ -160,7 +160,7 @@ public class RestaurantAdminMenu {
 
 
     private void showSavedRestaurant(ArrayList<Restaurant> restaurants){
-        //output.printRestaurants(restaurants);
+        printRestaurants(restaurants);
         System.out.println("Please chose the Restaurant : ");
         foodMenu(ScannerWrapper.getInstance().nextInt(),restaurants);
         ScannerWrapper.getInstance().nextLine();

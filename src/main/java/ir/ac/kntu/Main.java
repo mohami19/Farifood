@@ -1,6 +1,6 @@
 package ir.ac.kntu;
 
-import ir.ac.kntu.Menu.MainMenu;
+import ir.ac.kntu.menu.MainMenu;
 
 public class Main {
     public static void main(String[] args) {

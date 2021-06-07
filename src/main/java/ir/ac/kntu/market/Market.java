@@ -1,7 +1,7 @@
-package ir.ac.kntu.Market;
+package ir.ac.kntu.market;
 
-import ir.ac.kntu.Manager.Address;
-import ir.ac.kntu.Manager.Time;
+import ir.ac.kntu.manager.Address;
+import ir.ac.kntu.manager.Time;
 
 public abstract class Market {
     private String name;
@@ -77,7 +77,7 @@ public abstract class Market {
                 ", address = " + address +
                 ", beggingTime = " + beggingTime +
                 ", endingTime = " + endingTime +
-                ", star = " + star +
-                "\n"+ '}';
+                "\nstar = " + star +
+                '}';
     }
 }
