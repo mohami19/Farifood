@@ -57,52 +57,60 @@ public class RestaurantAdminMenu {
         printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         int choice = selector(restaurants.size()) + 1;
-        RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurants.get(choice-1));
-        if (!restaurants.get(choice-1).getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
-            System.out.println("Wrong Admin");
-            return;
-        }
-        System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
-        String input = ScannerWrapper.getInstance().nextLine().trim();
-        while(input.matches("[Yy]es|[Yy]")){
-            System.out.println("What do You want to modify");
-            printRestaurantModifyMenu();
-            switch (selector(8)) {
-                case 1:
-                    System.out.println("Enter the Name");
-                    restaurants.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
-                    break;
-                case 2:
-                    System.out.println("Enter the address");
-                    restaurants.get(choice-1).setAddress(new Address().addAddress());
-                    break;
-                case 3:
-                    System.out.println("please enter the starting time");
-                    restaurants.get(choice-1).setBeggingTime(new Time().addTime());
-                    break;
-                case 4:
-                    System.out.println("please enter the ending time");
-                    restaurants.get(choice-1).setEndingTime(new Time().addTime());
-                    break;
-                case 5:
-                    System.out.println("Enter the star");
-                    restaurants.get(choice-1).setStar(scoreGetter());
-                    break;
-                case 6:
-                    System.out.println("please Enter the new food (the saved food will be removed)");
-                    restaurants.get(choice-1).setFoods(new Restaurant().addFoods());
-                    break;
-                case 7:
-                    restaurants.get(choice-1).setPriceType(addPriceType());
-                    break;
-                default:
-                    System.out.println("nothing has been changed");
-                    break;
+        if (checkAdmin(restaurants.get(choice-1))) {
+            System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
+            String input = ScannerWrapper.getInstance().nextLine().trim();
+            while(input.matches("[Yy]es|[Yy]")){
+                System.out.println("What do You want to modify");
+                printRestaurantModifyMenu();
+                switch (selector(8)) {
+                    case 1:
+                        System.out.println("Enter the Name");
+                        restaurants.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
+                        break;
+                    case 2:
+                        System.out.println("Enter the address");
+                        restaurants.get(choice-1).setAddress(new Address().addAddress());
+                        break;
+                    case 3:
+                        System.out.println("please enter the starting time");
+                        restaurants.get(choice-1).setBeggingTime(new Time().addTime());
+                        break;
+                    case 4:
+                        System.out.println("please enter the ending time");
+                        restaurants.get(choice-1).setEndingTime(new Time().addTime());
+                        break;
+                    case 5:
+                        System.out.println("Enter the star");
+                        restaurants.get(choice-1).setStar(scoreGetter());
+                        break;
+                    case 6:
+                        System.out.println("please Enter the new food (the saved food will be removed)");
+                        restaurants.get(choice-1).setFoods(new Restaurant().addFoods());
+                        break;
+                    case 7:
+                        restaurants.get(choice-1).setPriceType(addPriceType());
+                        break;
+                    default:
+                        System.out.println("nothing has been changed");
+                        break;
+                }
+                System.out.println("The modified restaurant : " +restaurants.get(choice - 1).toString());
+                System.out.println("Do You Want To Modify more so Enter Yes" +
+                        " and If you don't want to modify press Enter");
+                input = ScannerWrapper.getInstance().nextLine().trim();
             }
-            System.out.println("The modified restaurant : " +restaurants.get(choice - 1).toString());
-            System.out.println("Do You Want To Modify more so Enter Yes and If you don't want to modify press Enter");
-            input = ScannerWrapper.getInstance().nextLine().trim();
         }
+
+    }
+
+    private boolean checkAdmin(Restaurant restaurant) {
+        RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurant);
+        if (!restaurant.getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
+            System.out.println("Wrong Admin");
+            return false;
+        }
+        return true;
     }
 
     private RestaurantAdmin addRestaurantAdmin(Restaurant restaurant){
