@@ -26,6 +26,13 @@ public class Admin extends Person{
     }
 
     @Override
+    public String toString() {
+        return "Admin{" + super.toString() +
+                "password='" + password + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

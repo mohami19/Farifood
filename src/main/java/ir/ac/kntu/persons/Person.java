@@ -18,6 +18,12 @@ public class Person {
     }
 
     @Override
+    public String toString() {
+        return "name='" + name + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;

@@ -11,7 +11,7 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 public class SuperMarketAdminMenu {
-    enum Menu {ADD_SUPERMARKET,MODIFY_SUPERMARKET,SEE_THE_COMMENTS}
+    enum Menu {MODIFY_SUPERMARKET,SEE_THE_COMMENTS}
 
     public SuperMarketAdminMenu(ArrayList<SuperMarket> superMarkets) {
         menu(superMarkets);
@@ -23,6 +23,7 @@ public class SuperMarketAdminMenu {
         switch (selector(2)){
             case 1:
                 modifySuperMarket(superMarkets);
+                break;
             case 2:
                 seeTheCommentsOfOneSuperMarket(superMarkets);
                 break;
@@ -41,8 +42,7 @@ public class SuperMarketAdminMenu {
     private void modifySuperMarket(ArrayList<SuperMarket> superMarkets) {
         printSuperMarkets(superMarkets);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
-        String variable = ScannerWrapper.getInstance().nextLine();
-        int choice = Integer.parseInt(variable);
+        int choice = selector(superMarkets.size()) + 1;
         SuperMarketAdmin superMarketAdmin = addSuperMarketAdmin(superMarkets.get(choice-1));
         if (!superMarkets.get(choice-1).getSuperMarketAdmin().checkSuperMarketAdmin(superMarketAdmin)) {
             System.out.println("Wrong Admin");
@@ -130,8 +130,8 @@ public class SuperMarketAdminMenu {
 
     private void printMenu(){
         Menu[] menu = Menu.values();
-        for (Menu value : menu) {
-            System.out.println(value);
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println(i+1 +" : " + menu[i]);
         }
     }
 

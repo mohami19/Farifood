@@ -7,9 +7,7 @@ import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.Stuff.Food;
-import ir.ac.kntu.market.SuperMarket;
 import ir.ac.kntu.persons.RestaurantAdmin;
-import ir.ac.kntu.persons.SuperMarketAdmin;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -17,8 +15,7 @@ import java.util.Random;
 
 public class RestaurantAdminMenu {
     enum RestaurantMenu {
-        SHOW_SAVED_RESTAURANT,MAKE_NEW_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,
-        SEE_THE_DELIVERIES,SEE_THE_IDEAS_AND_SCORE
+        SHOW_SAVED_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,SEE_THE_IDEAS_AND_SCORE
     }
 
     public RestaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries) {
@@ -59,15 +56,13 @@ public class RestaurantAdminMenu {
     private void modifyRestaurant(ArrayList<Restaurant> restaurants){
         printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
-        String variable = ScannerWrapper.getInstance().nextLine();
-        int choice = Integer.parseInt(variable);
+        int choice = selector(restaurants.size()) + 1;
         RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurants.get(choice-1));
         if (!restaurants.get(choice-1).getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
             System.out.println("Wrong Admin");
             return;
         }
-        System.out.println("Do You Want To Modify If so Enter Yes" +
-                " and If you don't want to add press Enter");
+        System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
         String input = ScannerWrapper.getInstance().nextLine().trim();
         while(input.matches("[Yy]es|[Yy]")){
             System.out.println("What do You want to modify");
@@ -105,8 +100,7 @@ public class RestaurantAdminMenu {
                     break;
             }
             System.out.println("The modified restaurant : " +restaurants.get(choice - 1).toString());
-            System.out.println("Do You Want To Modify more so Enter Yes" +
-                    " and If you don't want to modify press Enter");
+            System.out.println("Do You Want To Modify more so Enter Yes and If you don't want to modify press Enter");
             input = ScannerWrapper.getInstance().nextLine().trim();
         }
     }

@@ -36,13 +36,10 @@ public class MarketAdminMenu {
                 new RestaurantAdminMenu(restaurants,deliveries);
                 break;
             case 2:
-                //TODO
-                // SuperMarketAdminMenu
                 new SuperMarketAdminMenu(superMarkets);
             case 3:
                 //TODO
-                //
-                new FruitShopAdminMenu(fruitShops);
+                // FruitShopAdminMenu(fruitShops);
                 break;
             default:
                 break;

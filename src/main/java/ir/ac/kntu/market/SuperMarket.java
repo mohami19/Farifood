@@ -98,7 +98,7 @@ public class SuperMarket extends Market{
             start.setHour(start.getHour()+1);
         }
         for (int i = 0; i < times.size(); i++) {
-            System.out.println(times.get(i));
+            System.out.println(i+1 + " : "+times.get(i));
         }
         System.out.println("please chose the time of order");
         int choice = new Random().nextInt(times.size());

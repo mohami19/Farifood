@@ -16,18 +16,25 @@ public class SuperMarketAdmin extends Admin {
         return superMarket;
     }
 
-    public boolean checkSuperMarketAdmin(SuperMarketAdmin superMarketAdmin){
-        if (!this.getName().equals(superMarketAdmin.getName())){
+    public boolean checkSuperMarketAdmin(SuperMarketAdmin superMarketAdmin) {
+        if (!this.getName().equals(superMarketAdmin.getName())) {
             System.out.println("The Wrong name was used");
             return false;
         } else if (!this.getPassword().equals(superMarketAdmin.getPassword())) {
             System.out.println("Wrong password");
             return false;
-        } else if (!this.superMarket.equals(superMarketAdmin.getSuperMarket())) {
+        } else if (!superMarket.equals(superMarketAdmin.getSuperMarket())) {
             System.out.println("this Admin doesn't own this Super Market");
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "SuperMarketAdmin { " + super.toString() +
+                "superMarket=" + superMarket +
+                '}';
     }
 
     @Override
