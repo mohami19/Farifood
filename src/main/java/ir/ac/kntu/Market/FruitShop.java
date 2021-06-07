@@ -4,20 +4,21 @@ import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Persons.FruitShopAdmin;
-import ir.ac.kntu.Stuff.Stuff;
-
+import ir.ac.kntu.Stuff.Fruit;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
 public class FruitShop extends Market{
+    private ArrayList<Fruit> fruits;
     private final ArrayList<String> comments;
 
     private FruitShopAdmin fruitShopAdmin;
 
     public FruitShop(String name, Address address, Time beggingTime,
-                     Time endingTime, double star, ArrayList<Stuff> stuffs) {
-        super(name, address, beggingTime, endingTime, star, stuffs);
+                     Time endingTime, double star,ArrayList<Fruit> fruits) {
+        super(name, address, beggingTime, endingTime, star);
+        this.fruits = fruits;
         comments = new ArrayList<>();
     }
 
@@ -51,6 +52,17 @@ public class FruitShop extends Market{
         return choice - 1;
     }
 
+    public FruitShop addFruitShop(){
+        System.out.println("please Enter the new Fruit Shop");
+        System.out.println("Please Enter the name : ");
+        String name = ScannerWrapper.getInstance().nextLine();
+        Address address = new Address().addAddress();
+        Time start = new Time().addTime();
+        Time end = new Time().addTime();
+        ArrayList<Fruit> fruits = new Fruit().addFruits();
+        return new FruitShop(name,address,start,end,5,fruits);
+    }
+
     @Override
     public void addComment() {
         System.out.println("please enter the idea about the FruitShop");
@@ -76,7 +88,8 @@ public class FruitShop extends Market{
     @Override
     public String toString() {
         return super.toString() +
-                " comments = " + comments.size() +
-                '}';
+                "comments = " + comments.size()+
+                " Fruits = " +
+                " }";
     }
 }

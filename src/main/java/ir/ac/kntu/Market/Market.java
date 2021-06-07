@@ -17,24 +17,16 @@ public abstract class Market {
 
     private double star;
 
-    private ArrayList<Stuff> stuffs;
-
-    public Market(String name, Address address, Time beggingTime, Time endingTime, double star,
-                  ArrayList<Stuff> stuffs) {
+    public Market(String name, Address address, Time beggingTime, Time endingTime, double star) {
         this.name = name;
         this.address = address;
         this.beggingTime = beggingTime;
         this.endingTime = endingTime;
         this.star = starSetterToRight(star);
-        this.stuffs = stuffs;
     }
 
     public double getStar() {
         return star;
-    }
-
-    public ArrayList<Stuff> getStuffs() {
-        return stuffs;
     }
 
     public void setName(String name) {
@@ -55,10 +47,6 @@ public abstract class Market {
 
     public void setStar(double star) {
         this.star = star;
-    }
-
-    public void setStuffs(ArrayList<Stuff> stuffs) {
-        this.stuffs = stuffs;
     }
 
     abstract void addComment();
@@ -90,7 +78,6 @@ public abstract class Market {
                 ", beggingTime = " + beggingTime +
                 ", endingTime = " + endingTime +
                 ", star = " + star +
-                "\nstuffs=" + stuffs +
-                '}';
+                "\n"+ '}';
     }
 }

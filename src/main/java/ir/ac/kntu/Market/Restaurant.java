@@ -5,6 +5,7 @@ import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Persons.RestaurantAdmin;
+import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import java.util.Random;
 
 public class Restaurant extends Market{
 
+    private ArrayList<Food> foods;
+
     private PriceType priceType;
 
     private final ArrayList<String> comments;
@@ -20,10 +23,19 @@ public class Restaurant extends Market{
     private RestaurantAdmin restaurantAdmin;
 
     public Restaurant(String name, Address address, Time beggingTime, Time endingTime,
-                      double star, ArrayList<Stuff> stuffs, PriceType priceType) {
-        super(name, address, beggingTime, endingTime, star, stuffs);
+                      double star, ArrayList<Food> foods, PriceType priceType) {
+        super(name, address, beggingTime, endingTime, star);
+        this.foods = foods;
         this.priceType = priceType;
         comments = new ArrayList<>();
+    }
+
+    public ArrayList<Food> getFoods() {
+        return new ArrayList<>(foods);
+    }
+
+    public PriceType getPriceType() {
+        return priceType;
     }
 
     public RestaurantAdmin getRestaurantAdmin() {

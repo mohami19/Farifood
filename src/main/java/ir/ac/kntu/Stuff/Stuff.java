@@ -15,6 +15,10 @@ public abstract class Stuff {
 
     private final ArrayList<String> comments;
 
+    public Stuff() {
+        comments = new ArrayList<>();
+    }
+
     public Stuff(String name, double price, double star) {
         comments = new ArrayList<>();
         this.name = name;

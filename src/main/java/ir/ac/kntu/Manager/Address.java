@@ -7,6 +7,9 @@ public class Address {
 
     private String plaque;
 
+    public Address() {
+    }
+
     public Address(String street, String plaque) {
         this.street = street;
         this.plaque = plaque;
@@ -26,6 +29,15 @@ public class Address {
 
     public void setPlaque(String plaque) {
         this.plaque = plaque;
+    }
+
+    public Address addAddress(){
+        System.out.println("PLease Enter the Address");
+        System.out.println("Please enter the Street :  ");
+        String street = ScannerWrapper.getInstance().nextLine();
+        System.out.println("Please enter the plaque :  ");
+        String plaque = ScannerWrapper.getInstance().nextLine();
+        return new Address(street,plaque);
     }
 
     @Override

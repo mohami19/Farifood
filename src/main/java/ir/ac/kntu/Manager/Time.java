@@ -1,11 +1,16 @@
 package ir.ac.kntu.Manager;
 
+import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Time {
     private int hour;
 
     private int minute;
+
+    public Time() {
+    }
 
     public Time(int hour, int minute) {
         setTheTimeToTheRightOne(hour,minute);
@@ -25,6 +30,28 @@ public class Time {
 
     public void setMinute(int minute) {
         this.minute = minute&60;
+    }
+
+    public Time addTime() {
+        System.out.println("please Enter the time");
+        System.out.println("Please Enter the hour :  ");
+        int hour = new Random().nextInt(24);
+        try {
+            hour = ScannerWrapper.getInstance().nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        System.out.println("please Enter the minute :  ");
+        int minute = new Random().nextInt(60);
+        try {
+            minute = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        Time time = new Time(hour,minute);
+        time.setTheTimeToTheRightOne(hour,minute);
+        return time;
     }
 
     private void setTheTimeToTheRightOne(int hour, int minute){

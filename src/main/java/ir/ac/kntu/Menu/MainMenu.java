@@ -9,7 +9,7 @@ public class MainMenu {
     public MainMenu() {
         mainMenu();
     }
-    private void mainMenu (){
+    private void mainMenu(){
         System.out.println("pleas Enter the part you want to Enter");
         int choice = 1 + new Random().nextInt(5);
         try {

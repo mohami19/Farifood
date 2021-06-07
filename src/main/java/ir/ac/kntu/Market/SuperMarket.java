@@ -4,19 +4,22 @@ import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Persons.SuperMarketAdmin;
+import ir.ac.kntu.Stuff.Item;
 import ir.ac.kntu.Stuff.Stuff;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
 public class SuperMarket extends Market{
+    private ArrayList<Item> items;
     private final ArrayList<String> comments;
 
     private SuperMarketAdmin superMarketAdmin;
 
     public SuperMarket(String name, Address address, Time beggingTime, Time endingTime,
-                       double star, ArrayList<Stuff> stuffs) {
-        super(name, address, beggingTime, endingTime, star, stuffs);
+                       double star, ArrayList<Item> items) {
+        super(name, address, beggingTime, endingTime, star);
+        this.items = items;
         comments = new ArrayList<>();
     }
 
