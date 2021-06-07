@@ -101,7 +101,6 @@ public class RestaurantAdminMenu {
                 input = ScannerWrapper.getInstance().nextLine().trim();
             }
         }
-
     }
 
     private boolean checkAdmin(Restaurant restaurant) {

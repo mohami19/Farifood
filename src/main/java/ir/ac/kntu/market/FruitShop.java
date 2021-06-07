@@ -11,15 +11,17 @@ import java.util.Random;
 
 public class FruitShop extends Market{
     private ArrayList<Fruit> fruits;
-    private final ArrayList<String> comments;
+    private final ArrayList<String> comments = new ArrayList<>();
 
     private FruitShopAdmin fruitShopAdmin;
 
+    public FruitShop() {
+    }
+
     public FruitShop(String name, Address address, Time beggingTime,
-                     Time endingTime, double star,ArrayList<Fruit> fruits) {
+                     Time endingTime, double star, ArrayList<Fruit> fruits) {
         super(name, address, beggingTime, endingTime, star);
         this.fruits = fruits;
-        comments = new ArrayList<>();
     }
 
     public ArrayList<Fruit> getFruits() {
@@ -68,7 +70,7 @@ public class FruitShop extends Market{
         return new FruitShop(name,address,start,end,5,fruits);
     }
 
-    private ArrayList<Fruit> addFruits() {
+    public ArrayList<Fruit> addFruits() {
         ArrayList<Fruit> fruits = new ArrayList<>();
         System.out.println("Adding Fruit  : ");
         System.out.println("Do You Want To Add Fruit If so Enter Yes and If you don't want to add press Enter");
@@ -100,6 +102,10 @@ public class FruitShop extends Market{
             System.out.println("Score is : " + star);
         }
         setStar((getStar()+ star)/2);
+    }
+
+    public void setFruits(ArrayList<Fruit> fruits) {
+        this.fruits = fruits;
     }
 
     public ArrayList<String> getComments() {

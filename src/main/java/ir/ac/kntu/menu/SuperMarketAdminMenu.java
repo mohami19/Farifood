@@ -5,7 +5,6 @@ import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.SuperMarket;
 import ir.ac.kntu.persons.SuperMarketAdmin;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;

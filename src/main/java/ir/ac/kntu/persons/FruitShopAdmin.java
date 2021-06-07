@@ -12,17 +12,29 @@ public class FruitShopAdmin extends Admin{
         this.fruitShop = fruitShop;
     }
 
-    public boolean checkFruitShopAdminInformation(String userName, String password) {
-        if (!getName().equals(userName)) {
-            System.out.println("Wrong Username");
+    public boolean checkRestaurantAdmin(FruitShopAdmin fruitShopAdmin){
+        if (!this.getName().equals(fruitShopAdmin.getName())){
+            System.out.println("The Wrong name was used");
+            return false;
+        } else if (!this.getPassword().equals(fruitShopAdmin.getPassword())) {
+            System.out.println("Wrong password");
+            return false;
+        } else if (!this.fruitShop.equals(fruitShopAdmin.getFruitShop())) {
+            System.out.println("this Admin doesn't own this Super Market");
             return false;
         }
-        if (!this.getPassword().equals(password)) {
-            System.out.println("Wrong Password");
-            return false;
-        }
-        System.out.println("Login was successful");
         return true;
+    }
+
+    public FruitShop getFruitShop() {
+        return fruitShop;
+    }
+
+    @Override
+    public String toString() {
+        return "FruitShopAdmin { " + super.toString()+
+                "fruitShop=" + fruitShop +
+                '}';
     }
 
     @Override

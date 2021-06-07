@@ -38,8 +38,7 @@ public class MarketAdminMenu {
             case 2:
                 new SuperMarketAdminMenu(superMarkets);
             case 3:
-                //TODO
-                // FruitShopAdminMenu(fruitShops);
+                new FruitShopAdminMenu(fruitShops);
                 break;
             default:
                 break;
