@@ -13,42 +13,46 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 public class RestaurantAdminMenu {
+    enum RestaurantMenu {
+        SHOW_SAVED_RESTAURANT,MAKE_NEW_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,
+        SEE_THE_DELIVERIES,SEE_THE_IDEAS_AND_SCORE
+    }
 
     public RestaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries) {
         restaurantAdminMenu(restaurants,deliveries);
     }
 
-    public void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
+    private void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
         while (true) {
             printRestaurantAdminMenu();
-            int choice = selector();
-            if (choice == 1) {
-                sorting(restaurants);
-                showSavedRestaurant(restaurants);
-            } else if (choice == 2) {
-                addRestaurant(new Restaurant().addRestaurant(), restaurants);
-            } else if (choice == 3) {
-                modifyRestaurant(restaurants);
-            } else if (choice == 4) {
-                //TODO
-                // seeTheDelivery(deliveries);
-                ScannerWrapper.getInstance().nextLine();
-            } else if (choice == 5) {
-                //TODO
-                // output.printIdeasOfRestaurant(restaurants);
-                ScannerWrapper.getInstance().nextLine();
+            System.out.println("please chose the thing you want to do");
+            switch (selector(4)) {
+                case 1:
+                    sorting(restaurants);
+                    showSavedRestaurant(restaurants);
+                    break;
+                case 2 :
+                    addRestaurant(new Restaurant().addRestaurant(), restaurants);
+                    break;
+                case 3:
+                    modifyRestaurant(restaurants);
+                    break;
+                default:
+                    //TODO
+                    // printIdeasOfRestaurant(restaurants);
+                    break;
             }
         }
     }
 
-    public void printRestaurantAdminMenu(){
+    private void printRestaurantAdminMenu(){
         RestaurantMenu[] restaurantMenus= RestaurantMenu.values();
         for (int i = 0; i < restaurantMenus.length; i++) {
             System.out.println((i + 1)+" : " + restaurantMenus[i]);
         }
     }
 
-    public void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {
+    private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {
         restaurants.add(restaurant);
     }
 
@@ -63,7 +67,7 @@ public class RestaurantAdminMenu {
         while(input.matches("[Yy]es|[Yy]")){
             System.out.println("What do You want to modify");
             printRestaurantModifyMenu();
-            switch (selector()) {
+            switch (selector(8)) {
                 case 1:
                     System.out.println("Enter the Name");
                     restaurants.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
@@ -126,7 +130,7 @@ public class RestaurantAdminMenu {
         }
     }
 
-    public void printRestaurantModifyMenu(){
+    private void printRestaurantModifyMenu(){
         System.out.println("1 : name;");
         System.out.println("2 : address");
         System.out.println("3 : beggingTime");
@@ -136,8 +140,8 @@ public class RestaurantAdminMenu {
         System.out.println("7 : PriceType");
     }
 
-    private int selector(){
-        int chosen = new Random().nextInt(3);
+    private int selector(int bound){
+        int chosen = new Random().nextInt(bound);
         try {
             chosen = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();
@@ -176,7 +180,7 @@ public class RestaurantAdminMenu {
         }
     }
 
-    public void sorting(ArrayList<Restaurant> restaurants){
+    private void sorting(ArrayList<Restaurant> restaurants){
         System.out.println("Please chose the Restaurant 's sorting");
         printSortOfRestaurants();
         int choice = ScannerWrapper.getInstance().nextInt();
@@ -246,7 +250,7 @@ public class RestaurantAdminMenu {
         }
     }
 
-    public void sortRestaurantByStarDescending(ArrayList<Restaurant> restaurants){
+    private void sortRestaurantByStarDescending(ArrayList<Restaurant> restaurants){
         for (int i = 0; i < restaurants.size(); i++) {
             for (int j = 0; j < restaurants.size()- i - 1; j++) {
                 if (restaurants.get(j+1).getStar() > restaurants.get(j).getStar()) {
@@ -256,7 +260,7 @@ public class RestaurantAdminMenu {
         }
     }
 
-    public void sortRestaurantByIdeaAscending(ArrayList<Restaurant> restaurants){
+    private void sortRestaurantByIdeaAscending(ArrayList<Restaurant> restaurants){
         for (int i = 0; i < restaurants.size(); i++) {
             for (int j = 0; j < restaurants.size()- i - 1; j++) {
                 if (restaurants.get(j+1).getComments().size() < restaurants.get(j).getComments().size()) {
@@ -266,7 +270,7 @@ public class RestaurantAdminMenu {
         }
     }
 
-    public void sortRestaurantByIdeaDescending(ArrayList<Restaurant> restaurants){
+    private void sortRestaurantByIdeaDescending(ArrayList<Restaurant> restaurants){
         for (int i = 0; i < restaurants.size(); i++) {
             for (int j = 0; j < restaurants.size()- i - 1; j++) {
                 if (restaurants.get(j+1).getComments().size() > restaurants.get(j).getComments().size()) {

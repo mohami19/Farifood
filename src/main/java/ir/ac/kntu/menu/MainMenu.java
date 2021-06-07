@@ -1,12 +1,15 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Stuff.Food;
+import ir.ac.kntu.Stuff.Item;
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.PriceType;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
+import ir.ac.kntu.market.SuperMarket;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -15,11 +18,16 @@ import java.util.Random;
 public class MainMenu {
     private final ArrayList<Restaurant> restaurants = new ArrayList<>();
 
+    private final ArrayList<SuperMarket> superMarkets = new ArrayList<>();
+
+    private final ArrayList<FruitShop> fruitShops = new ArrayList<>();
+
     private final ArrayList<Delivery> deliveries = new ArrayList<>();
 
     public MainMenu() {
+        //TODO primaryFruitShop
+        primarySuperMarket();
         primaryRestaurants();
-        primaryFood();
         mainMenu();
     }
     private void mainMenu(){
@@ -44,7 +52,7 @@ public class MainMenu {
             case 3:
                 //TODO
                 // MarketAdminMenu
-                new MarketAdminMenu(restaurants,deliveries);
+                new MarketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
                 break;
             case 4:
                 //TODO
@@ -59,8 +67,44 @@ public class MainMenu {
         }
     }
 
+    private void primarySuperMarket(){
+        ArrayList<Item>[] items = primaryItems();
+        SuperMarket superMarket1 = new SuperMarket("DayToDay",new Address("Wild 2","13"),
+                new Time(10,0),new Time(23,0),5,items[0]);
+        SuperMarket superMarket2 = new SuperMarket("Saida",new Address("Asgard","13"),
+                new Time(10,0),new Time(23,0),5,items[1]);
+        SuperMarket superMarket3 = new SuperMarket("Ham Hame",new Address("Salehi","17"),
+                new Time(10,0),new Time(23,0),5,items[2]);
+        SuperMarket superMarket4 = new SuperMarket("Aref",new Address("Tehran","19"),
+                new Time(10,0),new Time(23,0),5,items[3]);
+        superMarkets.add(superMarket1);
+        superMarkets.add(superMarket2);
+        superMarkets.add(superMarket3);
+        superMarkets.add(superMarket4);
+    }
+
+    private ArrayList<Item>[] primaryItems(){
+        ArrayList<Item>[] items = new ArrayList[4];
+        for (int i = 0; i < items.length; i++) {
+            items[i]= new ArrayList<>();
+        }
+        items[0].add(new Item("koloche",2,5,25));
+        items[0].add(new Item("Noshabe",2.5,5,15));
+        items[0].add(new Item("vaifer",1,5,30));
+        items[1].add(new Item("zhele",2,5,15));
+        items[1].add(new Item("fanta",2.5,5,20));
+        items[1].add(new Item("chips",1,5,30));
+        items[2].add(new Item("pofak",2,5,25));
+        items[2].add(new Item("Chocolate",2.5,5,15));
+        items[2].add(new Item("abnabat",1,5,30));
+        items[3].add(new Item("oil",2,5,25));
+        items[3].add(new Item("Milk",2.5,5,15));
+        items[3].add(new Item("egg",1,5,30));
+        return items;
+    }
+
     private void primaryRestaurants(){
-        ArrayList<Food>[] foods =primaryFood();
+        ArrayList<Food>[] foods = primaryFood();
         Restaurant restaurant1 = new Restaurant("DumpEater", new Address("Harvest","92"),
                 new Time(8,0),new Time(22,0), 5,foods[0], PriceType.NORMAL );
         Restaurant restaurant2 = new Restaurant("Dine Dime", new Address("Wild ","13"),

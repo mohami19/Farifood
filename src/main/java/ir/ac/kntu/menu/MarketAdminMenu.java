@@ -2,7 +2,9 @@ package ir.ac.kntu.menu;
 
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.ScannerWrapper;
+import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
+import ir.ac.kntu.market.SuperMarket;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -11,10 +13,12 @@ import java.util.Random;
 public class MarketAdminMenu {
     enum Option{ RESTAURANT_ADMIN_MENU,SUPERMARKET_ADMIN_MENU,FRUIT_SHOP_ADMIN_MENU}
 
-    public MarketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries) {
-        marketAdminMenu(restaurants,deliveries);
+    public MarketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries,
+                           ArrayList<SuperMarket> superMarkets, ArrayList<FruitShop> fruitShops) {
+        marketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
     }
-    public void marketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
+    public void marketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries,
+                                ArrayList<SuperMarket> superMarkets, ArrayList<FruitShop> fruitShops){
         System.out.println("pleas Enter the part you want to Enter");
         Option[] option = MarketAdminMenu.Option.values();
         for (int i = 0; i < option.length; i++) {
@@ -34,6 +38,7 @@ public class MarketAdminMenu {
             case 2:
                 //TODO
                 // SuperMarketAdminMenu
+                new SuperMarketAdminMenu(superMarkets);
             case 3:
                 //TODO
                 // FruitShopAdminMenu
