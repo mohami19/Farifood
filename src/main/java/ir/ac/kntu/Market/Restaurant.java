@@ -6,6 +6,7 @@ import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Persons.RestaurantAdmin;
 import ir.ac.kntu.Stuff.Food;
+import ir.ac.kntu.Stuff.Fruit;
 import ir.ac.kntu.Stuff.Stuff;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Restaurant extends Market{
 
     private PriceType priceType;
 
-    private final ArrayList<String> comments;
+    private final ArrayList<String> comments = new ArrayList<>();
 
     private RestaurantAdmin restaurantAdmin;
 
@@ -27,7 +28,6 @@ public class Restaurant extends Market{
         super(name, address, beggingTime, endingTime, star);
         this.foods = foods;
         this.priceType = priceType;
-        comments = new ArrayList<>();
     }
 
     public ArrayList<Food> getFoods() {
@@ -52,6 +52,49 @@ public class Restaurant extends Market{
 
     public void setPriceType(PriceType priceType) {
         this.priceType = priceType;
+    }
+
+    public Restaurant addRestaurant(){
+        System.out.println("please Enter the new Fruit Shop");
+        System.out.println("Please Enter the name : ");
+        String name = ScannerWrapper.getInstance().nextLine();
+        Address address = new Address().addAddress();
+        Time start = new Time().addTime();
+        Time end = new Time().addTime();
+        ArrayList<Food> foods = addFoods();
+        PriceType priceType = addPriceType();
+        return new Restaurant(name,address,start,end,5,foods,priceType);
+    }
+
+    private ArrayList<Food> addFoods(){
+        ArrayList<Food> foods = new ArrayList<>();
+        System.out.println("Adding food  : ");
+        System.out.println("Do You Want To Add Food If so Enter Yes and If you don't want to add press Enter");
+        String input = ScannerWrapper.getInstance().nextLine().trim();
+        while(input.matches("[Yy]es|[Yy]")){
+            Food food = new Food().addFood();
+            System.out.println("The food you have saved : " + food);
+            foods.add(food);
+            System.out.println("Do You Want To Add More If so Enter Yes and If you don't want to add press Enter");
+            input = ScannerWrapper.getInstance().nextLine().trim();
+        }
+        return foods;
+    }
+
+    private PriceType addPriceType() {
+        System.out.println("please Enter the priceType you want");
+        PriceType[] priceTypes= PriceType.values();
+        for (int i = 0; i < priceTypes.length; i++) {
+            System.out.println(i + 1 + " : " + priceTypes[i]);
+        }
+        int choice = new Random().nextInt(3);
+        try {
+            choice = ScannerWrapper.getInstance().nextInt()-1;
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return  priceTypes[choice];
     }
 
     @Override

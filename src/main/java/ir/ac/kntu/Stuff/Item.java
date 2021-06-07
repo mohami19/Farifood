@@ -32,7 +32,6 @@ public class Item extends Stuff {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
             System.out.println("Score is : " + star);
         }
-        ScannerWrapper.getInstance().nextLine();
         setStar((star+getStar())/2);
     }
 

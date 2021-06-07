@@ -1,5 +1,5 @@
 package ir.ac.kntu.Manager;
 
 public enum PriceType {
-    ECONOMIC,NORMAL,LUXURY
+    ECONOMIC,NORMAL,LUXURY;
 }

@@ -2,9 +2,6 @@ package ir.ac.kntu.Market;
 
 import ir.ac.kntu.Manager.Address;
 import ir.ac.kntu.Manager.Time;
-import ir.ac.kntu.Stuff.Stuff;
-
-import java.util.ArrayList;
 
 public abstract class Market {
     private String name;

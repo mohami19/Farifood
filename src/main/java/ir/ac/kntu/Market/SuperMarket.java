@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class SuperMarket extends Market{
     private ArrayList<Item> items;
-    private final ArrayList<String> comments;
+    private final ArrayList<String> comments = new ArrayList<>();
 
     private SuperMarketAdmin superMarketAdmin;
 
@@ -20,7 +20,6 @@ public class SuperMarket extends Market{
                        double star, ArrayList<Item> items) {
         super(name, address, beggingTime, endingTime, star);
         this.items = items;
-        comments = new ArrayList<>();
     }
 
     public ArrayList<String> getComments() {

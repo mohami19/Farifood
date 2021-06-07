@@ -63,8 +63,23 @@ public class FruitShop extends Market{
         Address address = new Address().addAddress();
         Time start = new Time().addTime();
         Time end = new Time().addTime();
-        ArrayList<Fruit> fruits = new Fruit().addFruits();
+        ArrayList<Fruit> fruits = addFruits();
         return new FruitShop(name,address,start,end,5,fruits);
+    }
+
+    private ArrayList<Fruit> addFruits() {
+        ArrayList<Fruit> fruits = new ArrayList<>();
+        System.out.println("Adding Fruit  : ");
+        System.out.println("Do You Want To Add Fruit If so Enter Yes and If you don't want to add press Enter");
+        String input = ScannerWrapper.getInstance().nextLine().trim();
+        while(input.matches("[Yy]es|[Yy]")){
+            Fruit fruit = new Fruit().addFruit();
+            fruits.add(fruit);
+            System.out.println("The Fruit you have saved : " + fruit);
+            System.out.println("Do You Want To Add More If so Enter Yes and If you don't want to add press Enter");
+            input = ScannerWrapper.getInstance().nextLine().trim();
+        }
+        return fruits;
     }
 
     @Override
