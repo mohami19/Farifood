@@ -2,6 +2,7 @@ package ir.ac.kntu.Menu;
 
 import ir.ac.kntu.Delivery.Delivery;
 import ir.ac.kntu.Manager.Address;
+import ir.ac.kntu.Manager.PriceType;
 import ir.ac.kntu.Manager.ScannerWrapper;
 import ir.ac.kntu.Manager.Time;
 import ir.ac.kntu.Market.Restaurant;
@@ -18,23 +19,33 @@ public class RestaurantAdminMenu {
     }
 
     public void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
-        int choice = ScannerWrapper.getInstance().nextInt();
-        ScannerWrapper.getInstance().nextLine();
-        if (choice == 1) {
-            //sorting.sorting(scan,restaurants);
-            showSavedRestaurant(restaurants);
-        } else if (choice == 2) {
-            addRestaurant(new Restaurant().addRestaurant(),restaurants);
-        } else if (choice == 3) {
-            modifyRestaurant(restaurants);
-        } else if (choice == 4) {
-            //TODO
-            // seeTheDelivery(deliveries);
-            ScannerWrapper.getInstance().nextLine();
-        } else if (choice == 5) {
-            //TODO
-            // output.printIdeasOfRestaurant(restaurants);
-            ScannerWrapper.getInstance().nextLine();
+        System.out.println("Its in here");
+        while (true) {
+            printRestaurantAdminMenu();
+            int choice = selector();
+            if (choice == 1) {
+                sorting(restaurants);
+                showSavedRestaurant(restaurants);
+            } else if (choice == 2) {
+                addRestaurant(new Restaurant().addRestaurant(), restaurants);
+            } else if (choice == 3) {
+                modifyRestaurant(restaurants);
+            } else if (choice == 4) {
+                //TODO
+                // seeTheDelivery(deliveries);
+                ScannerWrapper.getInstance().nextLine();
+            } else if (choice == 5) {
+                //TODO
+                // output.printIdeasOfRestaurant(restaurants);
+                ScannerWrapper.getInstance().nextLine();
+            }
+        }
+    }
+
+    public void printRestaurantAdminMenu(){
+        RestaurantMenu[] restaurantMenus= RestaurantMenu.values();
+        for (int i = 0; i < restaurantMenus.length; i++) {
+            System.out.println((i + 1)+" : " + restaurantMenus[i]);
         }
     }
 
@@ -43,7 +54,7 @@ public class RestaurantAdminMenu {
     }
 
     private void modifyRestaurant(ArrayList<Restaurant> restaurants){
-        //output.printRestaurants(restaurants);
+        printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         String variable = ScannerWrapper.getInstance().nextLine();
         int choice = Integer.parseInt(variable);
@@ -52,7 +63,7 @@ public class RestaurantAdminMenu {
         String input = ScannerWrapper.getInstance().nextLine().trim();
         while(input.matches("[Yy]es|[Yy]")){
             System.out.println("What do You want to modify");
-            //printRestaurantModifyMenu();
+            printRestaurantModifyMenu();
             switch (selector()) {
                 case 1:
                     System.out.println("Enter the Name");
@@ -78,6 +89,9 @@ public class RestaurantAdminMenu {
                     System.out.println("please Enter the new food (the saved food will be removed)");
                     restaurants.get(choice-1).setFoods(new Restaurant().addFoods());
                     break;
+                case 7:
+                    restaurants.get(choice-1).setPriceType(addPriceType());
+                    break;
                 default:
                     System.out.println("nothing has been changed");
                     break;
@@ -89,10 +103,43 @@ public class RestaurantAdminMenu {
         }
     }
 
+    private PriceType addPriceType() {
+        System.out.println("please Enter the priceType you want");
+        PriceType[] priceTypes= PriceType.values();
+        for (int i = 0; i < priceTypes.length; i++) {
+            System.out.println(i + 1 + " : " + priceTypes[i]);
+        }
+        int choice = new Random().nextInt(3);
+        ScannerWrapper.getInstance().nextLine();
+        try {
+            choice = ScannerWrapper.getInstance().nextInt()-1;
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return  priceTypes[choice];
+    }
+
+    private void printRestaurants(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            System.out.println(restaurants.get(i));
+        }
+    }
+
+    public void printRestaurantModifyMenu(){
+        System.out.println("1 : name;");
+        System.out.println("2 : address");
+        System.out.println("3 : beggingTime");
+        System.out.println("4 : endingTime");
+        System.out.println("5 : star");
+        System.out.println("6 : add food");
+        System.out.println("7 : PriceType");
+    }
+
     private int selector(){
         int chosen = new Random().nextInt(3);
         try {
-            chosen = ScannerWrapper.getInstance().nextInt()-1;
+            chosen = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();
         } catch (InputMismatchException e) {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
@@ -126,6 +173,165 @@ public class RestaurantAdminMenu {
         }
         for (int i = 0; i < foods.size(); i++) {
             System.out.println(i+1 +" : " + foods.get(i));
+        }
+    }
+
+    public void sorting(ArrayList<Restaurant> restaurants){
+        System.out.println("Please chose the Restaurant 's sorting");
+        printSortOfRestaurants();
+        int choice = ScannerWrapper.getInstance().nextInt();
+        sortRestaurant(choice,restaurants);
+        System.out.println("Please chose the Food 's sorting");
+        printSortOfFoods();
+        choice = ScannerWrapper.getInstance().nextInt();
+        ScannerWrapper.getInstance().nextLine();
+        sortFood(choice,restaurants);
+    }
+
+    private void printSortOfFoods(){
+        System.out.println("1 : Sort by star Ascending");
+        System.out.println("2 : Sort by star Descending");
+        System.out.println("3 : Sort by Price Ascending");
+        System.out.println("4 : Sort by Price Descending");
+    }
+
+    private void printSortOfRestaurants(){
+        System.out.println("1 : by star Ascending");
+        System.out.println("2 : by star Descending");
+        System.out.println("3 : by the numbers of ideas up down");
+        System.out.println("4 : by the numbers of ideas down up");
+    }
+
+    private void sortRestaurant(int choice,ArrayList<Restaurant> restaurants) {
+        if (choice == 1) {
+            sortRestaurantByStarAscending(restaurants);
+        } else if (choice == 2) {
+            sortRestaurantByStarDescending(restaurants);
+        } else if (choice == 3) {
+            sortRestaurantByIdeaAscending(restaurants);
+        } else if (choice == 4) {
+            sortRestaurantByIdeaDescending(restaurants);
+        } else {
+            System.out.println("Wrong Input");
+        }
+    }
+
+    private void sortFood(int choice,ArrayList<Restaurant> restaurants) {
+        if (choice == 1) {
+            sortFoodByStarAscending(restaurants);
+        } else if (choice == 2) {
+            sortFoodByStarDescending(restaurants);
+        } else if (choice == 3) {
+            sortFoodByPriceAscending(restaurants);
+        } else if (choice == 4) {
+            sortFoodByPriceDescending(restaurants);
+        } else {
+            System.out.println("Wrong Input");
+        }
+    }
+
+    private void restaurantSwap(int first,int second,ArrayList<Restaurant> restaurants) {
+        Restaurant temp = restaurants.get(first);
+        restaurants.set(first,restaurants.get(second));
+        restaurants.set(second,temp);
+    }
+
+    private void sortRestaurantByStarAscending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            for (int j = 0; j < restaurants.size()- i - 1; j++) {
+                if (restaurants.get(j+1).getStar() < restaurants.get(j).getStar()) {
+                    restaurantSwap(j,j+1,restaurants);
+                }
+            }
+        }
+    }
+
+    public void sortRestaurantByStarDescending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            for (int j = 0; j < restaurants.size()- i - 1; j++) {
+                if (restaurants.get(j+1).getStar() > restaurants.get(j).getStar()) {
+                    restaurantSwap(j,j+1,restaurants);
+                }
+            }
+        }
+    }
+
+    public void sortRestaurantByIdeaAscending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            for (int j = 0; j < restaurants.size()- i - 1; j++) {
+                if (restaurants.get(j+1).getComments().size() < restaurants.get(j).getComments().size()) {
+                    restaurantSwap(j,j+1,restaurants);
+                }
+            }
+        }
+    }
+
+    public void sortRestaurantByIdeaDescending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            for (int j = 0; j < restaurants.size()- i - 1; j++) {
+                if (restaurants.get(j+1).getComments().size() > restaurants.get(j).getComments().size()) {
+                    restaurantSwap(j,j+1,restaurants);
+                }
+            }
+        }
+    }
+
+    private void foodSwap(int restaurant,int first,int second,ArrayList<Restaurant> restaurants){
+        Restaurant restaurant1 = restaurants.get(restaurant);
+        Food temp = restaurant1.getFoods().get(first);
+        restaurant1.getFoods().set(first, restaurants.get(restaurant).getFoods().get(second));
+        restaurant1.getFoods().set(second, temp);
+    }
+
+    private void sortFoodByPriceAscending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            Restaurant restaurant = restaurants.get(i);
+            for (int j = 0; j < restaurant.getFoods().size(); j++) {
+                for (int k = 0; k < restaurant.getFoods().size() - j - 1; k++) {
+                    if (restaurant.getFoods().get(k+1).getPrice() < restaurant.getFoods().get(k).getPrice()) {
+                        foodSwap(i,k,k+1,restaurants);
+                    }
+                }
+            }
+        }
+    }
+
+    private void sortFoodByPriceDescending(ArrayList<Restaurant> restaurants){
+        for (int i = 0; i < restaurants.size(); i++) {
+            Restaurant restaurant = restaurants.get(i);
+            for (int j = 0; j < restaurant.getFoods().size(); j++) {
+                for (int k = 0; k < restaurant.getFoods().size() - j - 1; k++) {
+                    if (restaurant.getFoods().get(k+1).getPrice() > restaurant.getFoods().get(k).getPrice()) {
+                        foodSwap(i,k,k+1,restaurants);
+                    }
+                }
+            }
+        }
+    }
+
+    private void sortFoodByStarAscending(ArrayList<Restaurant> restaurants) {
+        for (int i = 0; i < restaurants.size(); i++) {
+            Restaurant restaurant = restaurants.get(i);
+            for (int j = 0; j < restaurant.getFoods().size(); j++) {
+                for (int k = 0; k < restaurant.getFoods().size() - j - 1; k++) {
+                    if (restaurant.getFoods().get(k).getStar() > restaurant.getFoods().get(k + 1).getStar()) {
+                        foodSwap(i,k,k+1,restaurants);
+                    }
+                }
+            }
+        }
+    }
+
+    private void sortFoodByStarDescending(ArrayList<Restaurant> restaurants) {
+        for (int i = 0; i < restaurants.size(); i++) {
+            Restaurant restaurant = restaurants.get(i);
+            for (int j = 0; j < restaurant.getFoods().size(); j++) {
+                for (int k = 0; k < restaurant.getFoods().size() - j - 1; k++) {
+                    if (restaurant.getFoods().get(k).getStar() < restaurant.getFoods().get(k + 1).getStar()) {
+                        foodSwap(i,k,k+1,restaurants);
+                    }
+                }
+            }
         }
     }
 }

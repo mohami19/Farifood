@@ -47,6 +47,7 @@ public class FruitShop extends Market{
         }
         System.out.println("please chose the time of order");
         int choice = new Random().nextInt(times.size());
+        ScannerWrapper.getInstance().nextLine();
         try {
             choice = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();
@@ -89,6 +90,7 @@ public class FruitShop extends Market{
         comments.add(comment);
         System.out.println("please enter the score for the FruitShop");
         double star = new Random().nextInt(6);
+        ScannerWrapper.getInstance().nextLine();
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             ScannerWrapper.getInstance().nextLine();

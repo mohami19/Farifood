@@ -23,11 +23,10 @@ public class MarketAdminMenu {
         int choice = 1 + new Random().nextInt(5);
         try {
             choice = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
         } catch (InputMismatchException e) {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
-            System.out.println("The choice is : " + choice);
         }
-        ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case 1:
                 new RestaurantAdminMenu(restaurants,deliveries);

@@ -33,24 +33,13 @@ public class Restaurant extends Market{
         this.priceType = priceType;
     }
 
+
     public ArrayList<Food> getFoods() {
         return new ArrayList<>(foods);
     }
 
-    public PriceType getPriceType() {
-        return priceType;
-    }
-
-    public RestaurantAdmin getRestaurantAdmin() {
-        return restaurantAdmin;
-    }
-
     public void setFoods(ArrayList<Food> foods) {
         this.foods = foods;
-    }
-
-    public void setRestaurantAdmin(RestaurantAdmin restaurantAdmin) {
-        this.restaurantAdmin = restaurantAdmin;
     }
 
     public ArrayList<String> getComments() {
@@ -62,11 +51,13 @@ public class Restaurant extends Market{
     }
 
     public Restaurant addRestaurant(){
-        System.out.println("please Enter the new Fruit Shop");
+        System.out.println("please Enter the new Restaurant");
         System.out.println("Please Enter the name : ");
         String name = ScannerWrapper.getInstance().nextLine();
         Address address = new Address().addAddress();
+        System.out.println("Starting Time -->");
         Time start = new Time().addTime();
+        System.out.println("Ending Time -->");
         Time end = new Time().addTime();
         ArrayList<Food> foods = addFoods();
         PriceType priceType = addPriceType();
@@ -95,13 +86,14 @@ public class Restaurant extends Market{
             System.out.println(i + 1 + " : " + priceTypes[i]);
         }
         int choice = new Random().nextInt(3);
+        ScannerWrapper.getInstance().nextLine();
         try {
             choice = ScannerWrapper.getInstance().nextInt()-1;
             ScannerWrapper.getInstance().nextLine();
         } catch (InputMismatchException e) {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
         }
-        return  priceTypes[choice];
+        return priceTypes[choice];
     }
 
     @Override
@@ -111,6 +103,7 @@ public class Restaurant extends Market{
         comments.add(comment);
         System.out.println("please enter the score for the Restaurant");
         double star = new Random().nextInt(6);
+        ScannerWrapper.getInstance().nextLine();
         try {
             star = ScannerWrapper.getInstance().nextDouble();
             ScannerWrapper.getInstance().nextLine();
