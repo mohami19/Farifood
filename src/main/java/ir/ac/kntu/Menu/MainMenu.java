@@ -21,19 +21,24 @@ public class MainMenu {
         ScannerWrapper.getInstance().nextLine();
         switch (choice) {
             case 1:
-                //AdminMenu
+                //TODO
+                // AdminMenu
                 break;
             case 2:
-                //CustomerMenu
+                //TODO
+                // CustomerMenu
                 break;
             case 3:
-                //MarketAdminMenu
+                //TODO
+                // MarketAdminMenu
                 break;
             case 4:
-                //Features
+                //TODO
+                // Features
                 break;
             case 5:
-                //AddAdmin
+                //TODO
+                // AddAdmin
                 break;
             default:
                 break;

@@ -22,6 +22,10 @@ public class FruitShop extends Market{
         comments = new ArrayList<>();
     }
 
+    public ArrayList<Fruit> getFruits() {
+        return new ArrayList<>(fruits);
+    }
+
     public FruitShopAdmin getFruitShopAdmin() {
         return fruitShopAdmin;
     }
