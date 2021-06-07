@@ -23,6 +23,9 @@ public class Restaurant extends Market{
 
     private RestaurantAdmin restaurantAdmin;
 
+    public Restaurant() {
+    }
+
     public Restaurant(String name, Address address, Time beggingTime, Time endingTime,
                       double star, ArrayList<Food> foods, PriceType priceType) {
         super(name, address, beggingTime, endingTime, star);
@@ -40,6 +43,10 @@ public class Restaurant extends Market{
 
     public RestaurantAdmin getRestaurantAdmin() {
         return restaurantAdmin;
+    }
+
+    public void setFoods(ArrayList<Food> foods) {
+        this.foods = foods;
     }
 
     public void setRestaurantAdmin(RestaurantAdmin restaurantAdmin) {
@@ -66,7 +73,7 @@ public class Restaurant extends Market{
         return new Restaurant(name,address,start,end,5,foods,priceType);
     }
 
-    private ArrayList<Food> addFoods(){
+    public ArrayList<Food> addFoods(){
         ArrayList<Food> foods = new ArrayList<>();
         System.out.println("Adding food  : ");
         System.out.println("Do You Want To Add Food If so Enter Yes and If you don't want to add press Enter");

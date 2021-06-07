@@ -14,6 +14,9 @@ public abstract class Market {
 
     private double star;
 
+    public Market() {
+    }
+
     public Market(String name, Address address, Time beggingTime, Time endingTime, double star) {
         this.name = name;
         this.address = address;
