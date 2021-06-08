@@ -67,7 +67,14 @@ public class FruitShop extends Market{
         Time start = new Time().addTime();
         Time end = new Time().addTime();
         ArrayList<Fruit> fruits = addFruits();
-        return new FruitShop(name,address,start,end,5,fruits);
+        FruitShop fruitShop =new FruitShop(name,address,start,end,5,fruits);
+        System.out.println("The saved FruitShop is : "+fruitShop);
+        System.out.println("please Enter the FruitShopAdmin name");
+        String userName =ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the FruitShopAdmin password");
+        String password =ScannerWrapper.getInstance().nextLine();
+        fruitShop.setFruitShopAdmin(new FruitShopAdmin(userName,password,fruitShop));
+        return fruitShop;
     }
 
     public ArrayList<Fruit> addFruits() {

@@ -53,6 +53,11 @@ public class SuperMarket extends Market{
         ArrayList<Item> items = addItems();
         SuperMarket superMarket = new SuperMarket(name,address,start,end,5,items);
         System.out.println("the new  SuperMarket :  " + superMarket);
+        System.out.println("please Enter the SuperMarketAdmin name");
+        String userName =ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the SuperMarketAdmin password");
+        String password =ScannerWrapper.getInstance().nextLine();
+        superMarket.setSuperMarketAdmin(new SuperMarketAdmin(userName,password,superMarket));
         return superMarket;
     }
 

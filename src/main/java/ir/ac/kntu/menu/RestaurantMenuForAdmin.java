@@ -1,48 +1,44 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu;
 
-import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.PriceType;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.Restaurant;
-import ir.ac.kntu.Stuff.Food;
-import ir.ac.kntu.persons.RestaurantAdmin;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
-public class RestaurantAdminMenu {
+public class RestaurantMenuForAdmin {
     enum RestaurantMenu {
-        SHOW_SAVED_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,SEE_THE_IDEAS_AND_SCORE
+        SHOW_SAVED_RESTAURANT,ADD_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,SEE_THE_IDEAS_AND_SCORE
     }
 
-    public RestaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries) {
-        restaurantAdminMenu(restaurants,deliveries);
+    public RestaurantMenuForAdmin(ArrayList<Restaurant> restaurants) {
+        menu(restaurants);
     }
 
-    private void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
-        printRestaurantAdminMenu();
-        System.out.println("please chose the thing you want to do");
-        switch (selector(3)) {
+    private void menu(ArrayList<Restaurant> restaurants) {
+        printRestaurantMenu();
+        switch (selector(4)+1) {
             case 1:
                 sorting(restaurants);
                 showSavedRestaurant(restaurants);
                 break;
             case 2:
+                addRestaurant(new Restaurant().addRestaurant(),restaurants);
+                break;
+            case 3:
                 modifyRestaurant(restaurants);
                 break;
-            default:
+            case 4:
                 printIdeasOfRestaurant(restaurants);
                 break;
-        }
-    }
-
-    private void printRestaurantAdminMenu(){
-        RestaurantMenu[] restaurantMenus= RestaurantMenu.values();
-        for (int i = 0; i < restaurantMenus.length; i++) {
-            System.out.println((i + 1)+" : " + restaurantMenus[i]);
+            default:
+                System.out.println("Wrong Input");
+                break;
         }
     }
 
@@ -52,75 +48,84 @@ public class RestaurantAdminMenu {
         System.out.println(restaurants.get(choice).getComments());
     }
 
-    /*private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {
+    private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant> restaurants){
         restaurants.add(restaurant);
-    }*/
+    }
+
+    private void printRestaurantMenu(){
+        RestaurantMenu[] restaurantMenu = RestaurantMenu.values();
+        for (int i = 0; i < restaurantMenu.length; i++) {
+            System.out.println(i+1 + " : " + restaurantMenu[i]);
+        }
+    }
+
+    private int selector(int bound){
+        int chosen = new Random().nextInt(bound);
+        try {
+            chosen = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return chosen;
+    }
 
     private void modifyRestaurant(ArrayList<Restaurant> restaurants){
         printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         int choice = selector(restaurants.size()) + 1;
-        if (checkAdmin(restaurants.get(choice-1))) {
-            System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
-            String input = ScannerWrapper.getInstance().nextLine().trim();
-            while(input.matches("[Yy]es|[Yy]")){
-                System.out.println("What do You want to modify");
-                printRestaurantModifyMenu();
-                switch (selector(8)) {
-                    case 1:
-                        System.out.println("Enter the Name");
-                        restaurants.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
-                        break;
-                    case 2:
-                        System.out.println("Enter the address");
-                        restaurants.get(choice-1).setAddress(new Address().addAddress());
-                        break;
-                    case 3:
-                        System.out.println("please enter the starting time");
-                        restaurants.get(choice-1).setBeggingTime(new Time().addTime());
-                        break;
-                    case 4:
-                        System.out.println("please enter the ending time");
-                        restaurants.get(choice-1).setEndingTime(new Time().addTime());
-                        break;
-                    case 5:
-                        System.out.println("Enter the star");
-                        restaurants.get(choice-1).setStar(scoreGetter());
-                        break;
-                    case 6:
-                        System.out.println("please Enter the new food (the saved food will be removed)");
-                        restaurants.get(choice-1).setFoods(new Restaurant().addFoods());
-                        break;
-                    case 7:
-                        restaurants.get(choice-1).setPriceType(addPriceType());
-                        break;
-                    default:
-                        System.out.println("nothing has been changed");
-                        break;
-                }
-                System.out.println("The modified restaurant : " +restaurants.get(choice - 1).toString());
-                System.out.println("Do You Want To Modify more so Enter Yes" +
-                        " and If you don't want to modify press Enter");
-                input = ScannerWrapper.getInstance().nextLine().trim();
+        System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
+        String input = ScannerWrapper.getInstance().nextLine().trim();
+        while(input.matches("[Yy]es|[Yy]")) {
+            System.out.println("What do You want to modify");
+            printRestaurantModifyMenu();
+            switch (selector(8)) {
+                case 1:
+                    System.out.println("Enter the Name");
+                    restaurants.get(choice - 1).setName(ScannerWrapper.getInstance().nextLine());
+                    break;
+                case 2:
+                    System.out.println("Enter the address");
+                    restaurants.get(choice - 1).setAddress(new Address().addAddress());
+                    break;
+                case 3:
+                    System.out.println("please enter the starting time");
+                    restaurants.get(choice - 1).setBeggingTime(new Time().addTime());
+                    break;
+                case 4:
+                    System.out.println("please enter the ending time");
+                    restaurants.get(choice - 1).setEndingTime(new Time().addTime());
+                    break;
+                case 5:
+                    System.out.println("Enter the star");
+                    restaurants.get(choice - 1).setStar(scoreGetter());
+                    break;
+                case 6:
+                    System.out.println("please Enter the new food (the saved food will be removed)");
+                    restaurants.get(choice - 1).setFoods(new Restaurant().addFoods());
+                    break;
+                case 7:
+                    restaurants.get(choice - 1).setPriceType(addPriceType());
+                    break;
+                default:
+                    System.out.println("nothing has been changed");
+                    break;
             }
+            System.out.println("The modified restaurant : " + restaurants.get(choice - 1).toString());
+            System.out.println("Do You Want To Modify more so Enter Yes" +
+                    " and If you don't want to modify press Enter");
+            input = ScannerWrapper.getInstance().nextLine().trim();
         }
     }
 
-    private boolean checkAdmin(Restaurant restaurant) {
-        RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurant);
-        if (!restaurant.getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
-            System.out.println("Wrong Admin");
-            return false;
-        }
-        return true;
-    }
-
-    private RestaurantAdmin addRestaurantAdmin(Restaurant restaurant){
-        System.out.println("please Enter the name of the owner for log in");
-        String name = ScannerWrapper.getInstance().nextLine();
-        System.out.println("please Enter the password of the owner for log in");
-        String password = ScannerWrapper.getInstance().nextLine();
-        return new RestaurantAdmin(name,password,restaurant);
+    private void printRestaurantModifyMenu(){
+        System.out.println("1 : name;");
+        System.out.println("2 : address");
+        System.out.println("3 : beggingTime");
+        System.out.println("4 : endingTime");
+        System.out.println("5 : star");
+        System.out.println("6 : add food");
+        System.out.println("7 : PriceType");
     }
 
     private PriceType addPriceType() {
@@ -146,25 +151,11 @@ public class RestaurantAdminMenu {
         }
     }
 
-    private void printRestaurantModifyMenu(){
-        System.out.println("1 : name;");
-        System.out.println("2 : address");
-        System.out.println("3 : beggingTime");
-        System.out.println("4 : endingTime");
-        System.out.println("5 : star");
-        System.out.println("6 : add food");
-        System.out.println("7 : PriceType");
-    }
-
-    private int selector(int bound){
-        int chosen = new Random().nextInt(bound);
-        try {
-            chosen = ScannerWrapper.getInstance().nextInt();
-            ScannerWrapper.getInstance().nextLine();
-        } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
-        }
-        return chosen;
+    private void showSavedRestaurant(ArrayList<Restaurant> restaurants){
+        printRestaurants(restaurants);
+        System.out.println("Please chose the Restaurant : ");
+        foodMenu(ScannerWrapper.getInstance().nextInt()-1,restaurants);
+        ScannerWrapper.getInstance().nextLine();
     }
 
     private double scoreGetter(){
@@ -176,13 +167,6 @@ public class RestaurantAdminMenu {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
         }
         return score;
-    }
-
-    private void showSavedRestaurant(ArrayList<Restaurant> restaurants){
-        printRestaurants(restaurants);
-        System.out.println("Please chose the Restaurant : ");
-        foodMenu(ScannerWrapper.getInstance().nextInt(),restaurants);
-        ScannerWrapper.getInstance().nextLine();
     }
 
     private void foodMenu(int choice,ArrayList<Restaurant> restaurants) {

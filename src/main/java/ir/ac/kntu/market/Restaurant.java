@@ -69,6 +69,11 @@ public class Restaurant extends Market{
         PriceType priceType = addPriceType();
         Restaurant restaurant = new Restaurant(name,address,start,end,5,foods,priceType);
         System.out.println("the new  Restaurant :  " + restaurant);
+        System.out.println("please Enter the RestaurantAdmin name");
+        String userName =ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the RestaurantAdmin password");
+        String password =ScannerWrapper.getInstance().nextLine();
+        restaurant.setRestaurantAdmin(new RestaurantAdmin(userName,password,restaurant));
         return restaurant;
     }
 
