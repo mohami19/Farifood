@@ -8,6 +8,7 @@ import ir.ac.kntu.market.Restaurant;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Random;
 
 public class Delivery {
     private DeliveryType deliveryType;
@@ -86,6 +87,25 @@ public class Delivery {
         }
         ScannerWrapper.getInstance().nextLine();
         this.star = (this.star+starSetterToRight(star))/2;
+    }
+
+
+    public void addComment() {
+        System.out.println("please enter the idea about the Restaurant");
+        String comment = ScannerWrapper.getInstance().nextLine();
+        comments.add(comment);
+        System.out.println("please enter the score for the Restaurant");
+        double star = new Random().nextInt(6);
+        ScannerWrapper.getInstance().nextLine();
+        try {
+            star = ScannerWrapper.getInstance().nextDouble();
+            ScannerWrapper.getInstance().nextLine();
+            star = starSetterToRight(star);
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+            System.out.println("Score is : " + star);
+        }
+        this.star = ((this.star+ star)/2);
     }
 
     private double starSetterToRight(double star) {

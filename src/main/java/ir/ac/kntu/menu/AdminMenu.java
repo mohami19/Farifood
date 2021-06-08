@@ -1,5 +1,7 @@
 package ir.ac.kntu.menu;
 
+import ir.ac.kntu.customer.RestaurantOrder;
+import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
@@ -16,17 +18,25 @@ import java.util.Random;
 public class AdminMenu {
     enum Menu{ RESTAURANT_MENU,SUPERMARKET_MENU,FRUIT_SHOP_MENU,DELIVERY_MENU,ORDER_MENU,ADD_ADMIN}
 
+    private final ArrayList<Delivery> deliveries;
+
+    private final ArrayList<RestaurantOrder> restaurantOrders;
+
     public AdminMenu(ArrayList<Restaurant> restaurants, ArrayList<SuperMarket> superMarkets,
-                     ArrayList<FruitShop> fruitShops, ArrayList<Admin> admins) {
+                     ArrayList<FruitShop> fruitShops, ArrayList<Admin> admins, ArrayList<Delivery> deliveries,
+                     ArrayList<RestaurantOrder> restaurantOrders) {
+        this.deliveries = deliveries;
+        this.restaurantOrders = restaurantOrders;
         menu(restaurants,superMarkets,fruitShops,admins);
     }
 
-    private void menu(ArrayList<Restaurant> restaurants,ArrayList<SuperMarket> superMarkets,
-                      ArrayList<FruitShop> fruitShops,ArrayList<Admin> admins){
+
+    private void menu(ArrayList<Restaurant> restaurants, ArrayList<SuperMarket> superMarkets,
+                      ArrayList<FruitShop> fruitShops, ArrayList<Admin> admins){
         printMenu();
         Admin admin = getInformation();
         if (checkAdmin(admins,admin)) {
-            switch (selector(5)+1) {
+            switch (selector(5,1)) {
                 case 1:
                     new RestaurantMenuForAdmin(restaurants);
                     break;
@@ -37,7 +47,7 @@ public class AdminMenu {
                     new FruitShopMenuForAdmin(fruitShops);
                     break;
                 case 5:
-                    //TODO orderAdmin
+                    new RestaurantOrderMenu(restaurants,deliveries,restaurantOrders);
                     break;
                 case 6:
                     if (checkTheFirstAdmin(admins,admin)){
@@ -91,6 +101,17 @@ public class AdminMenu {
 
     private int selector(int bound){
         int chosen = new Random().nextInt(bound);
+        try {
+            chosen = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return chosen;
+    }
+
+    private int selector(int bound,int start){
+        int chosen = start + new Random().nextInt(bound);
         try {
             chosen = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();

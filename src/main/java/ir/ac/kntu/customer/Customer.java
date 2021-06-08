@@ -9,16 +9,16 @@ public class Customer {
 
     private Address address;
 
-    private final ArrayList<Order> orders;
+    private final ArrayList<RestaurantOrder> restaurantOrders;
 
     public Customer(String telephoneNumber, Address address) {
         this.telephoneNumber = telephoneNumber;
         this.address = address;
-        orders= new ArrayList<>();
+        restaurantOrders = new ArrayList<>();
     }
 
-    public void addOrder(Order order) {
-        orders.add(order);
+    public void addOrder(RestaurantOrder restaurantOrder) {
+        restaurantOrders.add(restaurantOrder);
     }
 
     @Override

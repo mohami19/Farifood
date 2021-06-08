@@ -3,6 +3,11 @@ package ir.ac.kntu.menu;
 import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.Stuff.Fruit;
 import ir.ac.kntu.Stuff.Item;
+import ir.ac.kntu.customer.RestaurantOrder;
+import ir.ac.kntu.delivery.AvailableDay;
+import ir.ac.kntu.delivery.Delivery;
+import ir.ac.kntu.delivery.DeliveryPriceType;
+import ir.ac.kntu.delivery.DeliveryType;
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.PriceType;
 import ir.ac.kntu.manager.ScannerWrapper;
@@ -24,6 +29,9 @@ public class MainMenu {
         ADMIN_MENU,CUSTOMER_MENU,MARKET_ADMIN_MENU,FEATURES,EXIT
     }
 
+    private final ArrayList<RestaurantOrder> restaurantOrders = new ArrayList<>();
+    private final ArrayList<Delivery> deliveries = new ArrayList<>();
+
     private final ArrayList<Restaurant> restaurants = new ArrayList<>();
 
     private final ArrayList<SuperMarket> superMarkets = new ArrayList<>();
@@ -37,6 +45,7 @@ public class MainMenu {
         primaryFruitShop();
         primarySuperMarket();
         primaryRestaurants();
+        primaryDelivery();
         mainMenu();
     }
 
@@ -56,7 +65,7 @@ public class MainMenu {
             }
             switch (choice) {
                 case 1:
-                    new AdminMenu(restaurants,superMarkets,fruitShops,admins);
+                    new AdminMenu(restaurants,superMarkets,fruitShops,admins,deliveries, restaurantOrders);
                     break;
                 case 2:
                     //TODO
@@ -211,5 +220,28 @@ public class MainMenu {
         foods[3].add(new Food("Roast chicken",28,5,new Time(2,0)));
         foods[3].add(new Food("Wagyu beef",27,5,new Time(1,30)));
         return foods;
+    }
+
+    private void primaryDelivery(){
+        ArrayList<AvailableDay> availableDays1= new ArrayList<>();
+        availableDays1.add(AvailableDay.FRIDAY);
+        availableDays1.add(AvailableDay.SUNDAY);
+        Delivery delivery1 = new Delivery(DeliveryType.CAR,1, DeliveryPriceType.HOURLY,availableDays1,
+                5,new Time(8,0),new Time(19,0));
+        ArrayList<AvailableDay> availableDays2= new ArrayList<>();
+        availableDays2.add(AvailableDay.TUESDAY);
+        availableDays2.add(AvailableDay.SUNDAY);
+        availableDays2.add(AvailableDay.MONDAY);
+        Delivery delivery2 = new Delivery(DeliveryType.CAR,5, DeliveryPriceType.PER_ORDER,
+                availableDays2,5,new Time(10,30),new Time(15,0));
+        ArrayList<AvailableDay> availableDays3 = new ArrayList<>();
+        availableDays3.add(AvailableDay.TUESDAY);
+        availableDays3.add(AvailableDay.SUNDAY);
+        availableDays3.add(AvailableDay.MONDAY);
+        Delivery delivery3 = new Delivery(DeliveryType.MOTOR,4, DeliveryPriceType.PER_ORDER,
+                availableDays3,5,new Time(10,30),new Time(24,0));
+        deliveries.add(delivery1);
+        deliveries.add(delivery2);
+        deliveries.add(delivery3);
     }
 }
