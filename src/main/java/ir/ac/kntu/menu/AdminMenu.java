@@ -32,10 +32,7 @@ public class AdminMenu {
                     new SuperMarketMenuForAdmin(superMarkets);
                     break;
                 case 3:
-                    //TODO FruitShopAdmin
-                    break;
-                case 4:
-                    //TODO DeliveryAdmin
+                    new FruitShopMenuForAdmin(fruitShops);
                     break;
                 case 5:
                     //TODO orderAdmin

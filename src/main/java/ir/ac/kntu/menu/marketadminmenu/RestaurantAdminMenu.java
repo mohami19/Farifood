@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu.marketadminmenu;
 
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.Address;
@@ -18,11 +18,11 @@ public class RestaurantAdminMenu {
         SHOW_SAVED_RESTAURANT,CHANGE_ONE_RESTAURANTS_INFORMATION,SEE_THE_IDEAS_AND_SCORE
     }
 
-    public RestaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries) {
-        restaurantAdminMenu(restaurants,deliveries);
+    public RestaurantAdminMenu(ArrayList<Restaurant> restaurants) {
+        restaurantAdminMenu(restaurants);
     }
 
-    private void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
+    private void restaurantAdminMenu(ArrayList<Restaurant> restaurants){
         printRestaurantAdminMenu();
         System.out.println("please chose the thing you want to do");
         switch (selector(3)) {
@@ -33,8 +33,11 @@ public class RestaurantAdminMenu {
             case 2:
                 modifyRestaurant(restaurants);
                 break;
-            default:
+            case 3:
                 printIdeasOfRestaurant(restaurants);
+                break;
+            default:
+                System.out.println("Wrong Input");
                 break;
         }
     }

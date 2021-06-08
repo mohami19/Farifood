@@ -1,10 +1,9 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu.marketadminmenu;
 
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.FruitShop;
-import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.persons.FruitShopAdmin;
 
 import java.util.ArrayList;
@@ -51,7 +50,6 @@ public class FruitShopAdminMenu {
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         int choice = selector(fruitShops.size(),1);
         if (checkAdmin(fruitShops.get(choice-1))) {
-
             System.out.println("Do You Want To Modify If so Enter Yes" +
                     " and If you don't want to add press Enter");
             String input = ScannerWrapper.getInstance().nextLine().trim();
@@ -125,15 +123,6 @@ public class FruitShopAdminMenu {
         System.out.println("4 : endingTime");
         System.out.println("5 : star");
         System.out.println("6 : add Fruits");
-    }
-
-    private boolean checkAdmin(Restaurant restaurant) {
-        /*RestaurantAdmin restaurantAdmin = addRestaurantAdmin(restaurant);
-        if (!restaurant.getRestaurantAdmin().checkRestaurantAdmin(restaurantAdmin)) {
-            System.out.println("Wrong Admin");
-            return false;
-        }*/
-        return true;
     }
 
     private int selector(int bound){

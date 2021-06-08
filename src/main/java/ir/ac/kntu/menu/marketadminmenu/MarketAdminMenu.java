@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu.marketadminmenu;
 
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.ScannerWrapper;
@@ -13,12 +13,12 @@ import java.util.Random;
 public class MarketAdminMenu {
     enum Option{ RESTAURANT_ADMIN_MENU,SUPERMARKET_ADMIN_MENU,FRUIT_SHOP_ADMIN_MENU}
 
-    public MarketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries,
-                           ArrayList<SuperMarket> superMarkets, ArrayList<FruitShop> fruitShops) {
-        marketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
+    public MarketAdminMenu(ArrayList<Restaurant> restaurants,ArrayList<SuperMarket> superMarkets,
+                           ArrayList<FruitShop> fruitShops) {
+        marketAdminMenu(restaurants,superMarkets,fruitShops);
     }
-    public void marketAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries,
-                                ArrayList<SuperMarket> superMarkets, ArrayList<FruitShop> fruitShops){
+    public void marketAdminMenu(ArrayList<Restaurant> restaurants,ArrayList<SuperMarket> superMarkets,
+                                ArrayList<FruitShop> fruitShops){
         System.out.println("pleas Enter the part you want to Enter");
         Option[] option = MarketAdminMenu.Option.values();
         for (int i = 0; i < option.length; i++) {
@@ -33,7 +33,7 @@ public class MarketAdminMenu {
         }
         switch (choice) {
             case 1:
-                new RestaurantAdminMenu(restaurants,deliveries);
+                new RestaurantAdminMenu(restaurants);
                 break;
             case 2:
                 new SuperMarketAdminMenu(superMarkets);
@@ -41,6 +41,7 @@ public class MarketAdminMenu {
                 new FruitShopAdminMenu(fruitShops);
                 break;
             default:
+                System.out.println("Wrong Input");
                 break;
         }
     }

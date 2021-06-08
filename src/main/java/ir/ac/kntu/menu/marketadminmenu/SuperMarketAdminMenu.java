@@ -1,4 +1,4 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu.marketadminmenu;
 
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.ScannerWrapper;
