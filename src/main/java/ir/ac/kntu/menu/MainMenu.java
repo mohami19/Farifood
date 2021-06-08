@@ -75,7 +75,6 @@ public class MainMenu {
                     new MarketAdminMenu(restaurants,superMarkets,fruitShops);
                     break;
                 case 4:
-                    //TODO
                     new Features(restaurants,superMarkets,fruitShops);
                     break;
                 default:
