@@ -30,7 +30,6 @@ public class AdminMenu {
         menu(restaurants,superMarkets,fruitShops,admins);
     }
 
-
     private void menu(ArrayList<Restaurant> restaurants, ArrayList<SuperMarket> superMarkets,
                       ArrayList<FruitShop> fruitShops, ArrayList<Admin> admins){
         Admin admin = getInformation();
