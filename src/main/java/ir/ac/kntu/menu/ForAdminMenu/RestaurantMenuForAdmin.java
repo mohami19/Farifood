@@ -181,7 +181,7 @@ public class RestaurantMenuForAdmin {
     }
 
     private void foodMenu(int choice,ArrayList<Restaurant> restaurants) {
-        ArrayList<Food> foods = restaurants.get(choice-1).getFoods();
+        ArrayList<Food> foods = restaurants.get(choice).getFoods();
         if (foods.size() == 0) {
             System.out.println("there is no food in this restaurant");
         }

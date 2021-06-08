@@ -33,9 +33,9 @@ public class AdminMenu {
 
     private void menu(ArrayList<Restaurant> restaurants, ArrayList<SuperMarket> superMarkets,
                       ArrayList<FruitShop> fruitShops, ArrayList<Admin> admins){
-        printMenu();
         Admin admin = getInformation();
         if (checkAdmin(admins,admin)) {
+            printMenu();
             switch (selector(5,1)) {
                 case 1:
                     new RestaurantMenuForAdmin(restaurants);
