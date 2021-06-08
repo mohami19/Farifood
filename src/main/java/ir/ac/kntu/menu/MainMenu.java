@@ -69,7 +69,7 @@ public class MainMenu {
                     break;
                 case 4:
                     //TODO
-                    // Features
+                    new Features(restaurants,superMarkets,fruitShops);
                     break;
                 default:
                     System.out.println("Wrong Input");

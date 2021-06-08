@@ -20,6 +20,10 @@ public class Item extends Stuff {
         this.numbers = numbers;
     }
 
+    public int getNumbers() {
+        return numbers;
+    }
+
     @Override
     public void addComments() {
         System.out.println("please enter the idea about the Item");
