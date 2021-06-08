@@ -1,6 +1,7 @@
 package ir.ac.kntu.menu;
 
 import ir.ac.kntu.Stuff.Food;
+import ir.ac.kntu.Stuff.Fruit;
 import ir.ac.kntu.Stuff.Item;
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.Address;
@@ -10,8 +11,9 @@ import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.market.SuperMarket;
-import ir.ac.kntu.menu.marketadmin.MarketAdminMenu;
+import ir.ac.kntu.menu.marketadminmenu.MarketAdminMenu;
 import ir.ac.kntu.persons.Admin;
+import ir.ac.kntu.persons.FruitShopAdmin;
 import ir.ac.kntu.persons.RestaurantAdmin;
 import ir.ac.kntu.persons.SuperMarketAdmin;
 
@@ -30,13 +32,12 @@ public class MainMenu {
 
     private final ArrayList<FruitShop> fruitShops = new ArrayList<>();
 
-    private final ArrayList<Delivery> deliveries = new ArrayList<>();
-
     private final ArrayList<Admin> admins = new ArrayList<>();
 
     public MainMenu() {
         //TODO primaryFruitShop
         admins.add(0,new Admin("Mahdi","9928793"));
+        primaryFruitShop();
         primarySuperMarket();
         primaryRestaurants();
         mainMenu();
@@ -58,21 +59,21 @@ public class MainMenu {
             }
             switch (choice) {
                 case 1:
-                    //TODO
-                    // AdminMenu(restaurants,deliveries,superMarkets,fruitShops,admins);
+                    new AdminMenu(restaurants,superMarkets,fruitShops,admins);
                     break;
                 case 2:
                     //TODO
                     // CustomerMenu
                     break;
                 case 3:
-                    new MarketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
+                    new MarketAdminMenu(restaurants,superMarkets,fruitShops);
                     break;
                 case 4:
                     //TODO
                     // Features
                     break;
                 default:
+                    System.out.println("Wrong Input");
                     break;
             }
             System.out.println("if you want to do more enter yes else enter anything you want");
@@ -85,6 +86,50 @@ public class MainMenu {
         for (int i = 0; i < options.length; i++) {
             System.out.println(i+1 + " : "+options[i]);
         }
+    }
+
+    private void primaryFruitShop() {
+        ArrayList<Fruit>[] fruits = primaryFruits();
+        FruitShop fruitShop1 = new FruitShop("Majid",new Address("Wild 1","15"),
+                new Time(11,0),new Time(22,0),5,fruits[0]);
+        fruitShop1.setFruitShopAdmin(new FruitShopAdmin("Ali","213",fruitShop1));
+        FruitShop fruitShop2 = new FruitShop("Majid",new Address("Wild 1","15"),
+                new Time(11,0),new Time(22,0),5,fruits[1]);
+        fruitShop2.setFruitShopAdmin(new FruitShopAdmin("Ali","213",fruitShop2));
+        FruitShop fruitShop3 = new FruitShop("Majid",new Address("Wild 1","15"),
+                new Time(11,0),new Time(22,0),5,fruits[2]);
+        fruitShop3.setFruitShopAdmin(new FruitShopAdmin("Ali","213",fruitShop3));
+        FruitShop fruitShop4 = new FruitShop("Majid",new Address("Wild 1","15"),
+                new Time(11,0),new Time(22,0),5,fruits[3]);
+        fruitShop4.setFruitShopAdmin(new FruitShopAdmin("Ali","213",fruitShop4));
+        fruitShops.add(fruitShop1);
+        fruitShops.add(fruitShop2);
+        fruitShops.add(fruitShop3);
+        fruitShops.add(fruitShop4);
+    }
+
+    private ArrayList<Fruit>[] primaryFruits(){
+        ArrayList<Fruit>[] fruits = new ArrayList[4];
+        for (int i = 0; i < fruits.length; i++) {
+            fruits[i]= new ArrayList<>();
+        }
+        fruits[0].add(new Fruit("Apple",15,5,4));
+        fruits[0].add(new Fruit("onion",10,5,3));
+        fruits[0].add(new Fruit("mango",10,5,3));
+        fruits[0].add(new Fruit("banana",10,5,3));
+        fruits[1].add(new Fruit("fig",10,5,3));
+        fruits[1].add(new Fruit("grape",10,5,3));
+        fruits[1].add(new Fruit("pineapple",10,5,3));
+        fruits[1].add(new Fruit("apple",10,5,3));
+        fruits[2].add(new Fruit("Kiwi",10,5,3));
+        fruits[2].add(new Fruit("avocado",10,5,3));
+        fruits[2].add(new Fruit("banana",10,5,3));
+        fruits[2].add(new Fruit("Lemon",10,5,3));
+        fruits[3].add(new Fruit("pomegranate",10,5,3));
+        fruits[3].add(new Fruit("water apple",10,5,3));
+        fruits[3].add(new Fruit("orange",10,5,3));
+        fruits[3].add(new Fruit("banana",10,5,3));
+        return fruits;
     }
 
     private void primarySuperMarket(){
