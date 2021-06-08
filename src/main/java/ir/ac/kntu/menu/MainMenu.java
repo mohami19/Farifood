@@ -35,7 +35,6 @@ public class MainMenu {
     private final ArrayList<Admin> admins = new ArrayList<>();
 
     public MainMenu() {
-        //TODO primaryFruitShop
         admins.add(0,new Admin("Mahdi","9928793"));
         primaryFruitShop();
         primarySuperMarket();

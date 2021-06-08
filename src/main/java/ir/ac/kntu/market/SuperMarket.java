@@ -41,6 +41,10 @@ public class SuperMarket extends Market{
         this.items = items;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
     public SuperMarket addSuperMarket(){
         System.out.println("please Enter the new SuperMarket");
         System.out.println("Please Enter the name : ");

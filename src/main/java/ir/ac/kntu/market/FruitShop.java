@@ -25,7 +25,7 @@ public class FruitShop extends Market{
     }
 
     public ArrayList<Fruit> getFruits() {
-        return new ArrayList<>(fruits);
+        return fruits;
     }
 
     public FruitShopAdmin getFruitShopAdmin() {
