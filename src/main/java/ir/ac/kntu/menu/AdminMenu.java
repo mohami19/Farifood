@@ -22,13 +22,14 @@ public class AdminMenu {
     private void menu(ArrayList<Restaurant> restaurants,ArrayList<SuperMarket> superMarkets,
                       ArrayList<FruitShop> fruitShops,ArrayList<Admin> admins){
         printMenu();
-        if (checkTheFirstAdmin(admins)) {
+        Admin admin = getInformation();
+        if (checkAdmin(admins,admin)) {
             switch (selector(5)+1) {
                 case 1:
                     new RestaurantMenuForAdmin(restaurants);
                     break;
                 case 2:
-                    //TODO SuperMarketAdmin
+                    new SuperMarketMenuForAdmin(superMarkets);
                     break;
                 case 3:
                     //TODO FruitShopAdmin
@@ -40,11 +41,31 @@ public class AdminMenu {
                     //TODO orderAdmin
                     break;
                 case 6:
-                    addAdmin(admins);
+                    if (checkTheFirstAdmin(admins,admin)){
+                        addAdmin(admins);
+                    } else {
+                        System.out.println("Cant add admin");
+                    }
                 default:
                     System.out.println("Wrong Input");
                     break;
             }
+        }
+    }
+
+    private Admin getInformation(){
+        System.out.println("please Enter the name");
+        String name = ScannerWrapper.getInstance().nextLine();
+        System.out.println("please Enter the password");
+        String password = ScannerWrapper.getInstance().nextLine();
+        return new Admin(name,password);
+    }
+
+    private boolean checkAdmin(ArrayList<Admin> admins,Admin admin) {
+        if (admins.contains(admin)){
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -58,14 +79,10 @@ public class AdminMenu {
         admins.add(admin);
     }
 
-    private boolean checkTheFirstAdmin(ArrayList<Admin> admins){
+    private boolean checkTheFirstAdmin(ArrayList<Admin> admins,Admin admin){
         Admin firstAdmin = admins.get(0);
-        System.out.println("please Enter the name");
-        String name = ScannerWrapper.getInstance().nextLine();
-        System.out.println("please Enter the password");
-        String password = ScannerWrapper.getInstance().nextLine();
-        if (name.equals(firstAdmin.getName())) {
-            if(password.equals(firstAdmin.getPassword())) {
+        if (admin.getName().equals(firstAdmin.getName())) {
+            if(admin.getPassword().equals(firstAdmin.getPassword())) {
                 return true;
             }
         }

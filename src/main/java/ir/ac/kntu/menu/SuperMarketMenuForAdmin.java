@@ -1,35 +1,57 @@
-package ir.ac.kntu.menu.marketadmin;
+package ir.ac.kntu.menu;
 
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.SuperMarket;
-import ir.ac.kntu.persons.SuperMarketAdmin;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 
-public class SuperMarketAdminMenu {
-    enum Menu {MODIFY_SUPERMARKET,SEE_THE_COMMENTS}
+public class SuperMarketMenuForAdmin {
+    enum Menu {SEE_SAVED_SUPERMARKET,ADD_SUPERMARKET,MODIFY_SUPERMARKET,SEE_THE_COMMENTS}
 
-    public SuperMarketAdminMenu(ArrayList<SuperMarket> superMarkets) {
+    public SuperMarketMenuForAdmin(ArrayList<SuperMarket> superMarkets) {
         menu(superMarkets);
     }
 
-    private void menu(ArrayList<SuperMarket> superMarkets) {
+    private void menu(ArrayList<SuperMarket> superMarkets){
         printMenu();
         System.out.println("please chose the thing you want to do");
-        switch (selector(2)){
+        switch (selector(4,1)){
             case 1:
-                modifySuperMarket(superMarkets);
+                seeSavedSuperMarket(superMarkets);
                 break;
             case 2:
+                addSuperMarket(new SuperMarket().addSuperMarket(),superMarkets);
+                break;
+            case 3:
+                modifySuperMarket(superMarkets);
+                break;
+            case 4:
                 seeTheCommentsOfOneSuperMarket(superMarkets);
                 break;
             default:
                 System.out.println("Wrong Input");
                 break;
         }
+    }
+
+    private void printMenu(){
+        Menu[] menu = Menu.values();
+        for (int i = 0; i < menu.length; i++) {
+            System.out.println(i+1 +" : " + menu[i]);
+        }
+    }
+
+    private void seeSavedSuperMarket(ArrayList<SuperMarket> superMarkets){
+        for (int i = 0; i < superMarkets.size(); i++) {
+            System.out.println(i + 1 + " : " + superMarkets.get(i));
+        }
+    }
+
+    private void addSuperMarket(SuperMarket superMarket,ArrayList<SuperMarket> superMarkets) {
+        superMarkets.add(superMarket);
     }
 
     private  void seeTheCommentsOfOneSuperMarket(ArrayList<SuperMarket> superMarkets) {
@@ -42,11 +64,6 @@ public class SuperMarketAdminMenu {
         printSuperMarkets(superMarkets);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
         int choice = selector(superMarkets.size(),1);
-        SuperMarketAdmin superMarketAdmin = addSuperMarketAdmin(superMarkets.get(choice-1));
-        if (!superMarkets.get(choice-1).getSuperMarketAdmin().checkSuperMarketAdmin(superMarketAdmin)) {
-            System.out.println("Wrong Admin");
-            return;
-        }
         System.out.println("Do You Want To Modify If so Enter Yes" +
                 " and If you don't want to add press Enter");
         String input = ScannerWrapper.getInstance().nextLine().trim();
@@ -89,14 +106,6 @@ public class SuperMarketAdminMenu {
         }
     }
 
-    private SuperMarketAdmin addSuperMarketAdmin(SuperMarket superMarket){
-        System.out.println("please Enter the name of the owner for log in");
-        String name = ScannerWrapper.getInstance().nextLine();
-        System.out.println("please Enter the password of the owner for log in");
-        String password = ScannerWrapper.getInstance().nextLine();
-        return new SuperMarketAdmin(name,password,superMarket);
-    }
-
     private void printSuperMarkets(ArrayList<SuperMarket> superMarkets) {
         for (int i = 0; i < superMarkets.size(); i++) {
             System.out.println(i+1 + " : " + superMarkets.get(i));
@@ -121,17 +130,6 @@ public class SuperMarketAdminMenu {
             System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
         }
         return score;
-    }
-
-    /*private void addSuperMarket(SuperMarket superMarket,ArrayList<SuperMarket> superMarkets) {
-        superMarkets.add(superMarket);
-    }*/
-
-    private void printMenu(){
-        Menu[] menu = Menu.values();
-        for (int i = 0; i < menu.length; i++) {
-            System.out.println(i+1 +" : " + menu[i]);
-        }
     }
 
     private int selector(int bound){

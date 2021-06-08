@@ -27,7 +27,7 @@ public class FruitShopAdminMenu {
 
     private void menu(ArrayList<FruitShop> fruitShops){
         printMenu();
-        switch (selector(2)){
+        switch (selector(2,1)){
             case 1:
                 modifyFruitShop(fruitShops);
                 break;
@@ -49,7 +49,7 @@ public class FruitShopAdminMenu {
     private void modifyFruitShop(ArrayList<FruitShop> fruitShops){
         printFruitShop(fruitShops);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
-        int choice = selector(fruitShops.size()) + 1;
+        int choice = selector(fruitShops.size(),1) ;
         if (checkAdmin(fruitShops.get(choice-1))) {
 
             System.out.println("Do You Want To Modify If so Enter Yes" +
@@ -58,7 +58,7 @@ public class FruitShopAdminMenu {
             while(input.matches("[Yy]es|[Yy]")){
                 System.out.println("What do You want to modify");
                 printFruitShopModifyMenu();
-                switch (selector(7)) {
+                switch (selector(6,1)) {
                     case 1:
                         System.out.println("Enter the Name");
                         fruitShops.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
@@ -138,6 +138,17 @@ public class FruitShopAdminMenu {
 
     private int selector(int bound){
         int chosen = new Random().nextInt(bound);
+        try {
+            chosen = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return chosen;
+    }
+
+    private int selector(int bound,int start){
+        int chosen = start + new Random().nextInt(bound);
         try {
             chosen = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();

@@ -59,14 +59,14 @@ public class RestaurantAdminMenu {
     private void modifyRestaurant(ArrayList<Restaurant> restaurants){
         printRestaurants(restaurants);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
-        int choice = selector(restaurants.size()) + 1;
+        int choice = selector(restaurants.size(),1);
         if (checkAdmin(restaurants.get(choice-1))) {
             System.out.println("Do You Want To Modify If so Enter Yes and If you don't want to add press Enter");
             String input = ScannerWrapper.getInstance().nextLine().trim();
             while(input.matches("[Yy]es|[Yy]")){
                 System.out.println("What do You want to modify");
                 printRestaurantModifyMenu();
-                switch (selector(8)) {
+                switch (selector(7,1)) {
                     case 1:
                         System.out.println("Enter the Name");
                         restaurants.get(choice-1).setName(ScannerWrapper.getInstance().nextLine());
@@ -158,6 +158,17 @@ public class RestaurantAdminMenu {
 
     private int selector(int bound){
         int chosen = new Random().nextInt(bound);
+        try {
+            chosen = ScannerWrapper.getInstance().nextInt();
+            ScannerWrapper.getInstance().nextLine();
+        } catch (InputMismatchException e) {
+            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+        }
+        return chosen;
+    }
+
+    private int selector(int bound,int start){
+        int chosen = start + new Random().nextInt(bound);
         try {
             chosen = ScannerWrapper.getInstance().nextInt();
             ScannerWrapper.getInstance().nextLine();
