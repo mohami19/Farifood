@@ -1,14 +1,11 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.marketadmin;
 
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
-import ir.ac.kntu.market.SuperMarket;
 import ir.ac.kntu.persons.FruitShopAdmin;
-import ir.ac.kntu.persons.RestaurantAdmin;
-import ir.ac.kntu.persons.SuperMarketAdmin;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;

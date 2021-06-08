@@ -1,10 +1,11 @@
-package ir.ac.kntu.menu;
+package ir.ac.kntu.menu.marketadmin;
 
 import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.PriceType;
 import ir.ac.kntu.manager.ScannerWrapper;
 import ir.ac.kntu.manager.Time;
+import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.persons.RestaurantAdmin;
@@ -23,22 +24,19 @@ public class RestaurantAdminMenu {
     }
 
     private void restaurantAdminMenu(ArrayList<Restaurant> restaurants, ArrayList<Delivery> deliveries){
-        while (true) {
-            printRestaurantAdminMenu();
-            System.out.println("please chose the thing you want to do");
-            switch (selector(3)) {
-                case 1:
-                    sorting(restaurants);
-                    showSavedRestaurant(restaurants);
-                    break;
-                case 2:
-                    modifyRestaurant(restaurants);
-                    break;
-                default:
-                    //TODO
-                    // printIdeasOfRestaurant(restaurants);
-                    break;
-            }
+        printRestaurantAdminMenu();
+        System.out.println("please chose the thing you want to do");
+        switch (selector(3)) {
+            case 1:
+                sorting(restaurants);
+                showSavedRestaurant(restaurants);
+                break;
+            case 2:
+                modifyRestaurant(restaurants);
+                break;
+            default:
+                printIdeasOfRestaurant(restaurants);
+                break;
         }
     }
 
@@ -47,6 +45,12 @@ public class RestaurantAdminMenu {
         for (int i = 0; i < restaurantMenus.length; i++) {
             System.out.println((i + 1)+" : " + restaurantMenus[i]);
         }
+    }
+
+    private void printIdeasOfRestaurant(ArrayList<Restaurant> restaurants) {
+        printRestaurants(restaurants);
+        int choice = selector(restaurants.size());
+        System.out.println(restaurants.get(choice).getComments());
     }
 
     /*private void addRestaurant(Restaurant restaurant,ArrayList<Restaurant>restaurants) {

@@ -10,6 +10,8 @@ import ir.ac.kntu.manager.Time;
 import ir.ac.kntu.market.FruitShop;
 import ir.ac.kntu.market.Restaurant;
 import ir.ac.kntu.market.SuperMarket;
+import ir.ac.kntu.menu.marketadmin.MarketAdminMenu;
+import ir.ac.kntu.persons.Admin;
 import ir.ac.kntu.persons.RestaurantAdmin;
 import ir.ac.kntu.persons.SuperMarketAdmin;
 
@@ -18,6 +20,10 @@ import java.util.InputMismatchException;
 import java.util.Random;
 
 public class MainMenu {
+    enum Option {
+        ADMIN_MENU,CUSTOMER_MENU,MARKET_ADMIN_MENU,FEATURES,EXIT
+    }
+
     private final ArrayList<Restaurant> restaurants = new ArrayList<>();
 
     private final ArrayList<SuperMarket> superMarkets = new ArrayList<>();
@@ -26,46 +32,58 @@ public class MainMenu {
 
     private final ArrayList<Delivery> deliveries = new ArrayList<>();
 
+    private final ArrayList<Admin> admins = new ArrayList<>();
+
     public MainMenu() {
         //TODO primaryFruitShop
+        admins.add(0,new Admin("Mahdi","9928793"));
         primarySuperMarket();
         primaryRestaurants();
         mainMenu();
     }
+
     private void mainMenu(){
-        System.out.println("pleas Enter the part you want to Enter");
-        int choice = 1 + new Random().nextInt(5);
-        try {
-            choice = ScannerWrapper.getInstance().nextInt();
-            ScannerWrapper.getInstance().nextLine();
-        } catch (InputMismatchException e) {
-            System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
-            System.out.println("The choice is : " + choice);
+        System.out.println("if you want to do sth please enter yes else enter anything you want");
+        String input = ScannerWrapper.getInstance().nextLine();
+        while (input.matches("[Yy]es|[Yy]")) {
+            printMainMenu();
+            System.out.println("pleas Enter the part you want to Enter");
+            int choice = 1 + new Random().nextInt(5);
+            try {
+                choice = ScannerWrapper.getInstance().nextInt();
+                ScannerWrapper.getInstance().nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("You Entered the Wrong Input and Random will be add\n" + e);
+                System.out.println("The choice is : " + choice);
+            }
+            switch (choice) {
+                case 1:
+                    //TODO
+                    // AdminMenu(restaurants,deliveries,superMarkets,fruitShops,admins);
+                    break;
+                case 2:
+                    //TODO
+                    // CustomerMenu
+                    break;
+                case 3:
+                    new MarketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
+                    break;
+                case 4:
+                    //TODO
+                    // Features
+                    break;
+                default:
+                    break;
+            }
+            System.out.println("if you want to do more enter yes else enter anything you want");
+            input = ScannerWrapper.getInstance().nextLine().trim();
         }
-        switch (choice) {
-            case 1:
-                //TODO
-                // AdminMenu
-                break;
-            case 2:
-                //TODO
-                // CustomerMenu
-                break;
-            case 3:
-                //TODO
-                // MarketAdminMenu
-                new MarketAdminMenu(restaurants,deliveries,superMarkets,fruitShops);
-                break;
-            case 4:
-                //TODO
-                // Features
-                break;
-            case 5:
-                //TODO
-                // AddAdmin
-                break;
-            default:
-                break;
+    }
+
+    private void printMainMenu(){
+        Option[] options = Option.values();
+        for (int i = 0; i < options.length; i++) {
+            System.out.println(i+1 + " : "+options[i]);
         }
     }
 
