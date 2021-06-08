@@ -49,7 +49,7 @@ public class FruitShopAdminMenu {
     private void modifyFruitShop(ArrayList<FruitShop> fruitShops){
         printFruitShop(fruitShops);
         System.out.println("Please Enter the Restaurant That You Want To Modify");
-        int choice = selector(fruitShops.size(),1) ;
+        int choice = selector(fruitShops.size(),1);
         if (checkAdmin(fruitShops.get(choice-1))) {
 
             System.out.println("Do You Want To Modify If so Enter Yes" +
