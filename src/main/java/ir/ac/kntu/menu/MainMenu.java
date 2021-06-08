@@ -3,7 +3,6 @@ package ir.ac.kntu.menu;
 import ir.ac.kntu.Stuff.Food;
 import ir.ac.kntu.Stuff.Fruit;
 import ir.ac.kntu.Stuff.Item;
-import ir.ac.kntu.delivery.Delivery;
 import ir.ac.kntu.manager.Address;
 import ir.ac.kntu.manager.PriceType;
 import ir.ac.kntu.manager.ScannerWrapper;
@@ -16,7 +15,6 @@ import ir.ac.kntu.persons.Admin;
 import ir.ac.kntu.persons.FruitShopAdmin;
 import ir.ac.kntu.persons.RestaurantAdmin;
 import ir.ac.kntu.persons.SuperMarketAdmin;
-
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
