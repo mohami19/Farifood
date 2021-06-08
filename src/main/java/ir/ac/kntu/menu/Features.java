@@ -75,10 +75,84 @@ public class Features {
         int choice = ScannerWrapper.getInstance().nextInt();
         sortFruitShop(choice,fruitShops);
         System.out.println("Please chose the Fruits 's sorting");
-        printSortOfFoods();
+        printSortOfFruit();
         choice = ScannerWrapper.getInstance().nextInt();
         ScannerWrapper.getInstance().nextLine();
         sortFruits(choice,fruitShops);
+    }
+
+    private void printSortOfFruitShop(){
+        System.out.println("1 : by star Ascending");
+        System.out.println("2 : by star Descending");
+        System.out.println("3 : by the numbers of ideas up down");
+        System.out.println("4 : by the numbers of ideas down up");
+    }
+
+    private void printSortOfFruit() {
+        System.out.println("1 : Sort by star Ascending");
+        System.out.println("2 : Sort by star Descending");
+        System.out.println("3 : Sort by Price Ascending");
+        System.out.println("4 : Sort by Price Descending");
+    }
+
+    private void sortFruitShop(int choice,ArrayList<FruitShop> fruitShops) {
+        if (choice == 1) {
+            sortFruitShopByStarAscending(fruitShops);
+        } else if (choice == 2) {
+            sortFruitShopByStarDescending(fruitShops);
+        } else if (choice == 3) {
+            sortFruitShopByIdeaAscending(fruitShops);
+        } else if (choice == 4) {
+            sortFruitShopByIdeaDescending(fruitShops);
+        } else {
+            System.out.println("Wrong Input");
+        }
+    }
+
+    private void fruitShopSwap(int first,int second,ArrayList<FruitShop> fruitShops) {
+        FruitShop temp = fruitShops.get(first);
+        fruitShops.set(first,fruitShops.get(second));
+        fruitShops.set(second,temp);
+    }
+
+    private void sortFruitShopByIdeaDescending(ArrayList<FruitShop> fruitShops) {
+        for (int i = 0; i < fruitShops.size(); i++) {
+            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
+                if (fruitShops.get(j+1).getComments().size() > fruitShops.get(j).getComments().size()) {
+                    fruitShopSwap(j,j+1,fruitShops);
+                }
+            }
+        }
+    }
+
+    private void sortFruitShopByIdeaAscending(ArrayList<FruitShop> fruitShops) {
+        for (int i = 0; i < fruitShops.size(); i++) {
+            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
+                if (fruitShops.get(j+1).getComments().size() < fruitShops.get(j).getComments().size()) {
+                    fruitShopSwap(j,j+1,fruitShops);
+                }
+            }
+        }
+    }
+
+    private void sortFruitShopByStarDescending(ArrayList<FruitShop> fruitShops) {
+        for (int i = 0; i < fruitShops.size(); i++) {
+            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
+                if (fruitShops.get(j+1).getStar() > fruitShops.get(j).getStar()) {
+                    fruitShopSwap(j,j+1,fruitShops);
+                }
+            }
+        }
+    }
+
+    private void sortFruitShopByStarAscending(ArrayList<FruitShop> fruitShops) {
+        for (int i = 0; i < fruitShops.size(); i++) {
+            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
+                if (fruitShops.get(j+1).getStar() < fruitShops.get(j).getStar()) {
+                    fruitShopSwap(j,j+1,fruitShops);
+                }
+            }
+        }
     }
 
     private void sortFruits(int choice,ArrayList<FruitShop> fruitShops) {
@@ -152,73 +226,6 @@ public class Features {
                 }
             }
         }
-    }
-
-    private void sortFruitShop(int choice,ArrayList<FruitShop> fruitShops) {
-        if (choice == 1) {
-            sortFruitShopByStarAscending(fruitShops);
-        } else if (choice == 2) {
-            sortFruitShopByStarDescending(fruitShops);
-        } else if (choice == 3) {
-            sortFruitShopByIdeaAscending(fruitShops);
-        } else if (choice == 4) {
-            sortFruitShopByIdeaDescending(fruitShops);
-        } else {
-            System.out.println("Wrong Input");
-        }
-    }
-
-    private void fruitShopSwap(int first,int second,ArrayList<FruitShop> fruitShops) {
-        FruitShop temp = fruitShops.get(first);
-        fruitShops.set(first,fruitShops.get(second));
-        fruitShops.set(second,temp);
-    }
-
-    private void sortFruitShopByIdeaDescending(ArrayList<FruitShop> fruitShops) {
-        for (int i = 0; i < fruitShops.size(); i++) {
-            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
-                if (fruitShops.get(j+1).getComments().size() > fruitShops.get(j).getComments().size()) {
-                    fruitShopSwap(j,j+1,fruitShops);
-                }
-            }
-        }
-    }
-
-    private void sortFruitShopByIdeaAscending(ArrayList<FruitShop> fruitShops) {
-        for (int i = 0; i < fruitShops.size(); i++) {
-            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
-                if (fruitShops.get(j+1).getComments().size() < fruitShops.get(j).getComments().size()) {
-                    fruitShopSwap(j,j+1,fruitShops);
-                }
-            }
-        }
-    }
-
-    private void sortFruitShopByStarDescending(ArrayList<FruitShop> fruitShops) {
-        for (int i = 0; i < fruitShops.size(); i++) {
-            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
-                if (fruitShops.get(j+1).getStar() > fruitShops.get(j).getStar()) {
-                    fruitShopSwap(j,j+1,fruitShops);
-                }
-            }
-        }
-    }
-
-    private void sortFruitShopByStarAscending(ArrayList<FruitShop> fruitShops) {
-        for (int i = 0; i < fruitShops.size(); i++) {
-            for (int j = 0; j < fruitShops.size()- i - 1; j++) {
-                if (fruitShops.get(j+1).getStar() < fruitShops.get(j).getStar()) {
-                    fruitShopSwap(j,j+1,fruitShops);
-                }
-            }
-        }
-    }
-
-    private void printSortOfFruitShop(){
-        System.out.println("1 : by star Ascending");
-        System.out.println("2 : by star Descending");
-        System.out.println("3 : by the numbers of ideas up down");
-        System.out.println("4 : by the numbers of ideas down up");
     }
 
     private void restaurantSorting(ArrayList<Restaurant> restaurants){
